@@ -6,7 +6,7 @@ import HomePage from './pages/homepage';
 import Login from './pages/loginpage';
 import NotFoundPage from './pages/notfoundpage';
 import Register from './pages/registerpage';
-import Service from './pages/servicepage';
+import ServicePage from './pages/servicepage';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/service/:id" element={<Service />} />
+        <Route path="/service/:id" element={<ServicePage />} />
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
       <Footer />

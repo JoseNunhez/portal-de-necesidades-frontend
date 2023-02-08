@@ -1,8 +1,24 @@
+import ServicesList from "../components/servicesList";
+import useServices from "../hooks/useServices";
+
 const HomePage = () => {
+
+    const { services, loading, error } = useServices();
+
+    if (loading) {
+        return <p>Cargando...</p>;
+    }
+
+    if (error) {
+        return <p>{error.message}</p>;
+    }
+
     return (
         <section>
             <h1>Servicios ofrecidos</h1>
-            <p>En esta sección se muestran los servicios ofrecidos por la empresa</p>
+            <article>
+                <ServicesList services={services} />
+            </article>
         </section>
     );
 }

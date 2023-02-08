@@ -1,4 +1,4 @@
-const Service = () => {
+const ServicePage = ({service}) => {
     return (
         <div>
         <h1>Unic Service Page</h1>
@@ -7,4 +7,4 @@ const Service = () => {
     );
 }
     
-export default Service;
+export default ServicePage;

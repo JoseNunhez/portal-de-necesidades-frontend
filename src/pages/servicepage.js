@@ -1,8 +1,10 @@
+import Service from "../components/service";
+
 const ServicePage = ({service}) => {
     return (
         <div>
         <h1>Unic Service Page</h1>
-        <p>Aquí se muestra un único servicio con su información detallada</p>
+        <Service service={service} />
         </div>
     );
 }

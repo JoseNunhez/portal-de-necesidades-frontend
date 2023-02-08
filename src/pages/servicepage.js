@@ -4,7 +4,7 @@ const ServicePage = ({service}) => {
     return (
         <div>
         <h1>Unic Service Page</h1>
-        <Service service={service} />
+        <p>Single Service</p>
         </div>
     );
 }

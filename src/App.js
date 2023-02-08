@@ -1,12 +1,26 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import Footer from './components/footer';
+import Header from './components/header';
+import HomePage from './pages/homepage';
+import Login from './pages/loginpage';
+import NotFoundPage from './pages/notfoundpage';
+import Register from './pages/registerpage';
+import Service from './pages/servicepage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>React App</h1>
-      </header>
-    </div>
+    <main>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/service/:id" element={<Service />} />
+        <Route path="*" element={<NotFoundPage/>} />
+      </Routes>
+      <Footer />
+    </main>
   );
 }
 

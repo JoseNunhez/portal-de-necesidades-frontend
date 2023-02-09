@@ -10,17 +10,23 @@ import ServicePage from './pages/servicepage';
 
 function App() {
   return (
-    <main>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/service/:id" element={<ServicePage />} />
-        <Route path="*" element={<NotFoundPage/>} />
-      </Routes>
-      <Footer />
-    </main>
+    <>
+      <header>
+        <Header />
+      </header>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/service/:id" element={<ServicePage />} />
+          <Route path="*" element={<NotFoundPage/>} />
+        </Routes>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </>
   );
 }
 

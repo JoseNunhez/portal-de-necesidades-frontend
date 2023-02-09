@@ -27,7 +27,7 @@ const Register = () => {
 
     return (
         <section>
-            <h1>Register</h1>
+            <h2>Register</h2>
             <form onSubmit={handleForm}>
                 <fieldset>
                     <label htmlFor="email">Email</label>

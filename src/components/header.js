@@ -3,14 +3,16 @@ import Auth from "./auth"
 
 const Header = () => {
     return (
-        <header>
-            <h1>
-                <Link to="/">Portal de Necesidades</Link>
-            </h1>
+        <>
+            <Link to="/">
+                <h1>
+                 Portal de Necesidades
+                </h1>
+            </Link>
             <nav>
                 <Auth />
             </nav>
-        </header>
+        </>
     )
 }
     

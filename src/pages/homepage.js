@@ -16,7 +16,7 @@ const HomePage = () => {
 
     return (
         <section>
-            <h1>Servicios ofrecidos</h1>
+            <h2>Servicios ofrecidos</h2>
             <article>
                 <ServicesList services={services} />
             </article>

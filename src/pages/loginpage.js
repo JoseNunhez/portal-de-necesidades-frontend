@@ -18,7 +18,7 @@ const Login = () => {
     }
     return (
         <section>
-            <h1>Login</h1>
+            <h2>Login</h2>
             <form onSubmit={handleForm}>
                 <fieldset>
                     <label htmlFor="email">Email</label>

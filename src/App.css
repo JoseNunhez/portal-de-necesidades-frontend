@@ -1,0 +1,91 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a:link, a:visited, a:active, a:hover{
+  text-decoration:none;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main{
+  flex: 1;
+  padding: 1rem;
+}
+
+#root > header,
+#root > footer {
+  padding: 1rem;
+}
+
+header {
+  background-color: steelblue;
+  color: white;
+}
+
+#root > header h1{
+  margin-bottom: 1rem;
+  color: black;
+}
+
+#root > header ul {
+  display: flex;
+  list-style: none;
+  gap : 1rem;
+
+}
+
+#root > header li {
+  padding: 0.8rem 1.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid white;
+  background-color: aliceblue;
+}
+
+footer {
+  text-align: center;
+}
+section > form,
+section > h2 {
+  margin-bottom: 1rem;
+}
+
+section > form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+section > form input {
+  flex-grow: 1;
+  padding: 0.3rem 1rem;
+  align-items: center;
+}
+
+section > form button {
+  padding: 0.3rem 1rem;
+  align-items: center;
+  background-color: steelblue;
+}
+
+ul.services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  text-transform: capitalize;
+}
+
+ul.services-list li {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid steelblue;
+  border-radius: 0.5rem;
+  background-color: aliceblue;
+}
+

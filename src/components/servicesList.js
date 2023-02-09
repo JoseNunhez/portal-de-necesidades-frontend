@@ -2,7 +2,7 @@ import Service from "./service";
 
 const ServicesList = ({ services }) => {
     return services.length ? (
-        <ul>
+        <ul className="services-list">
             {services.map((service) => (
                 <li key={service.url}>
                     <Service service={service} />

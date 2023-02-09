@@ -4,6 +4,7 @@ import useServices from "../hooks/useServices";
 const HomePage = () => {
 
     const { services, loading, error } = useServices();
+    console.log(services)
 
     if (loading) {
         return <p>Cargando...</p>;

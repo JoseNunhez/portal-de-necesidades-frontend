@@ -5,7 +5,7 @@ const Service = ({ service }) => {
     return (
         <article>
             <p>{service.name}</p>
-            <Link to={`/service/${id}}`}>Ver detalles</Link>
+            <Link to={`/service/${id}`}>Ver detalles</Link>
         </article>
     );
 }

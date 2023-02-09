@@ -9,6 +9,7 @@ const useSingleService = (id) => {
     useEffect(() => {
         const fetchService = async () => {
             try {
+                setIsLoading(true);
                 const service = await loadServiceByIdService(id);
                 setService(service);
             } catch (error) {

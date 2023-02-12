@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useSingleService from '../hooks/useSingleService';
+import ServiceDatallado from '../components/servicedetallado';
 
 const ServicePage = () => {
     const { id } = useParams();
@@ -13,9 +14,7 @@ const ServicePage = () => {
     return (
         <section>
             <h2>Unic Service Page</h2>
-            <h3>{service.name}</h3>
-            <p>Peso: {service.weight}</p>
-            <img src={service.sprites.front_default} alt={service.name} />
+            <ServiceDatallado service={service}/>
         </section>
     );
 }

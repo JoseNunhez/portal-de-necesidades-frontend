@@ -4,7 +4,7 @@ const ServicesList = ({ services }) => {
     return services.length ? (
         <ul className="services-list">
             {services.map((service) => (
-                <li key={service.url}>
+                <li key={service.ID}>
                     <Service service={service} />
                 </li>
             ))}

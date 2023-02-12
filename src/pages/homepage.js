@@ -4,7 +4,6 @@ import useServices from "../hooks/useServices";
 const HomePage = () => {
 
     const { services, loading, error } = useServices();
-    console.log(services)
 
     if (loading) {
         return <p>Cargando...</p>;
@@ -17,9 +16,9 @@ const HomePage = () => {
     return (
         <section>
             <h2>Servicios ofrecidos</h2>
-            <article>
+            <section>
                 <ServicesList services={services} />
-            </article>
+            </section>
         </section>
     );
 }

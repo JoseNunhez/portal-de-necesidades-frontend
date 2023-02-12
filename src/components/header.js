@@ -6,7 +6,7 @@ const Header = () => {
         <>
             <Link to="/">
                 <h1>
-                 Portal de Necesidades
+                 PORTAL DE NECESIDADES DIGITALES
                 </h1>
             </Link>
             <nav>

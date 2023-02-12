@@ -47,6 +47,11 @@ header {
   background-color: aliceblue;
 }
 
+h3{
+  text-transform: uppercase;
+
+}
+
 footer {
   text-align: center;
 }
@@ -77,7 +82,7 @@ ul.services-list {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   list-style: none;
-  text-transform: capitalize;
+  text-transform: initial;
 }
 
 ul.services-list li {

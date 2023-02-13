@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-a:link, a:visited, a:active, a:hover{
+a:link, a:visited, a:active, a:hover, a{
   text-decoration:none;
 }
 
@@ -60,21 +60,27 @@ section > h2 {
   margin-bottom: 1rem;
 }
 
-section > form{
+form{
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-section > form input {
+form input {
   flex-grow: 1;
   padding: 0.3rem 1rem;
   align-items: center;
 }
 
-section > form button {
+button {
   padding: 0.3rem 1rem;
   align-items: center;
   background-color: steelblue;
+  color : white;
+}
+
+button:hover {
+  background-color: rgb(32, 107, 169);
+  cursor: pointer;
 }
 
 ul.services-list {
@@ -94,3 +100,24 @@ ul.services-list li {
   background-color: aliceblue;
 }
 
+section > button {
+  padding: 0.3rem 1rem;
+  align-items: center;
+  background-color: steelblue;
+  color : white;
+}
+
+button > a {
+  color: white;
+}
+
+.auth-conectado {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: right;
+}
+
+.servicelist {
+  margin : 1rem;
+}

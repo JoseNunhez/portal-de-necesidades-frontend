@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './components/footer';
 import Header from './components/header';
+import CreateServicePage from './pages/createservicepage';
 import HomePage from './pages/homepage';
 import Login from './pages/loginpage';
 import NotFoundPage from './pages/notfoundpage';
@@ -20,7 +21,8 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/service/:id" element={<ServicePage />} />
-          <Route path="*" element={<NotFoundPage/>} />
+          <Route path="/service" element={<CreateServicePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <footer>

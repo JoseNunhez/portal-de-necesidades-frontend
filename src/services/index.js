@@ -22,8 +22,10 @@ export const loadServiceByIdService = async (id) => {
 }
 
 
-export const registerUserService = async (email, password) => {
-    const response = await fetch((process.env.REACT_APP_API_URL)/'user', {
+export const registerUserService = async ({ email, password, nameUser }) => {
+    console.log(email, password, nameUser)
+    console.log(process.env.REACT_APP_API_URL_BD + '/user')
+    const response = await fetch((process.env.REACT_APP_API_URL_BD)+ '/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -31,6 +33,7 @@ export const registerUserService = async (email, password) => {
         body: JSON.stringify({
             email,
             password,
+            nameUser,
         }),
     });
 
@@ -43,8 +46,8 @@ export const registerUserService = async (email, password) => {
     return json;
 }
 
-export const loginUserService = async (email, password) => {
-    const response = await fetch((process.env.REACT_APP_API_URL)/'auth', {
+export const loginUserService = async ({email, password}) => {
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + '/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -61,5 +64,23 @@ export const loginUserService = async (email, password) => {
         throw new Error(json.message);
     }
 
-    return json;
+    return json.message;
+}
+
+export const getMyUserDataService = async (token) => {
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + '/user', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token,
+        },
+    });
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+
+    return json.message;
 }

@@ -22,19 +22,11 @@ export const loadServiceByIdService = async (id) => {
 }
 
 
-export const registerUserService = async ({ email, password, nameUser }) => {
-    console.log(email, password, nameUser)
+export const registerUserService = async ({ data }) => {
     console.log(process.env.REACT_APP_API_URL_BD + '/user')
     const response = await fetch((process.env.REACT_APP_API_URL_BD)+ '/user', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email,
-            password,
-            nameUser,
-        }),
+        body: data,
     });
 
     const json = await response.json();
@@ -101,4 +93,19 @@ export const createServiceService = async ({ data, token }) => {
     }
     return json.message;
 }
-    
+
+
+export const deleteService = async ({id, token }) => {
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + '/service/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': token,
+        },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+        throw new Error(json.message);
+    }
+}

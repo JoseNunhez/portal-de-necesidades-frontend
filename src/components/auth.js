@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
+import '../styles/botonesgenerales.css'
 
 const Auth = () => {
     const { user, logout } = useContext(AuthContext);
@@ -13,8 +14,8 @@ const Auth = () => {
         </section>
     ) : (
         <ul>
-            <Link to="/login"><li>Login</li></Link>
-            <Link to="/register"><li>Register</li></Link>
+            <Link to="/login"><button>Login</button></Link>
+            <Link to="/register"><button>Register</button></Link>
         </ul>
     )
 }

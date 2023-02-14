@@ -28,39 +28,23 @@ const CreateService = () => {
     }
 
     return !serviceCreated ? (
-        <form onSubmit={handleForm}>
-            <fieldset>
-                <label htmlFor="title">Título: </label>
-                <input type="text" id="title" name="title" required />
-            </fieldset>
-            <fieldset>
-                <label htmlFor="description">Descripción: </label>
-                <input type="text" id="description" name="description" required />
-            </fieldset>
-            <fieldset>
-                <label htmlFor="price">Precio: </label>
-                <input type="number" id="price" name="price" required />
-            </fieldset>
-            <fieldset>
-                <label htmlFor="categoriaId">Categoría: </label>
-                <input type="text" id="categoriaId" name="categoriaId" required />
-            </fieldset>
-            <fieldset>
-                <label htmlFor="subcategoriaId">Subcategoría: </label>
-                <input type="text" id="subcategoriaId" name="subcategoriaId" required />
-            </fieldset>
-            <fieldset>
-                <label htmlFor="date">Fecha máxima de entrega(DD/MM/AAAA): </label>
-                <input type="text" id="date" name="date" required />
-            </fieldset>
-            <fieldset>
-                <label htmlFor="file">Archivo: </label>
-                <input type="file" id="file" name="file"  />
-            </fieldset>
-            <button>Crear servicio</button>
-            {creating ? <p>Creando servicio...</p> : null}
-            {error ? <p>{error}</p> : null}
-        </form>
+        <>
+            <form className="formulario" onSubmit={handleForm}>
+                <h3>Crea tu servicio</h3>
+                    <input className="form-input" type="text" id="title" name="title" placeholder="Título" required />
+                    <input className="form-input" type="text" id="description" name="description" placeholder="Desripción" required />
+                    <input className="form-input" type="number" id="price" name="price" placeholder="Precio" required />
+                    <input className="form-input" type="text" id="categoriaId" name="categoriaId" placeholder="Categoría" required />
+                    <input className="form-input" type="text" id="subcategoriaId" name="subcategoriaId" placeholder="Subcategoría" required />
+                    <input className="form-input" type="text" id="date" name="date" placeholder="Fecha límite de entrega(DD/MM/AAAA)" required />
+                    <input className="form-input" type="file" id="file" name="file" placeholder="Archivo" required />
+                <button>Crear servicio</button>
+                <p><Link to="/">Ver todos los servicios</Link></p>
+
+            </form>
+                {creating ? <p>Creando servicio...</p> : null}
+                {error ? <p>{error}</p> : null}
+        </>
     ) : (
             <section>
                 <p>Servicio creado correctamente</p>

@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom"
 import Auth from "./auth"
+import "../styles/botonesgenerales.css"
 
 const Header = () => {
     return (
         <>
-            <Link to="/">
                 <h1>
+            <Link to="/">
                  PORTAL DE NECESIDADES DIGITALES
-                </h1>
             </Link>
+                </h1>
             <nav>
                 <Auth />
             </nav>

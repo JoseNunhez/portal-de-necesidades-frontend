@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { loginUserService } from '../services';
+import '../styles/formularios.css';
+
 
 
 
@@ -28,17 +30,12 @@ const Login = () => {
     return (
         <section>
             <h2>Login</h2>
-            <form onSubmit={handleForm}>
-                <fieldset>
-                    <label htmlFor="email">Email: </label>
-                    <input type="email" id="email" name="email" required onChange={(e) => setEmail(e.target.value)} />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" name="password" required onChange={(e) => setPassword(e.target.value)}/>
-                </fieldset>
-
-                <button>Login</button>
+            <form className='formulario' onSubmit={handleForm}>
+                <h3>Login</h3>
+                    <input className='form-input' type="email" id="email" name="email" placeholder='Ingrese su correo electrónico' required onChange={(e) => setEmail(e.target.value)} />
+                    <input className='form-input' type="password" id="password" name="password" placeholder='Ingrese su contraseña' required onChange={(e) => setPassword(e.target.value)}/>
+                    <button className='boton-login'>Login</button>
+                    <p><Link to="/register">¿Aún no tengo cuenta?</Link></p>
                 {error ? <p>{error}</p> : null}
             </form>
         </section>

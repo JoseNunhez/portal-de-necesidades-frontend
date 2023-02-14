@@ -1,8 +1,29 @@
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { deleteService } from "../services";
 
 const Service = ({ service }) => {
+    const navigate = useNavigate();
+    const { user , token } = useContext(AuthContext);
+    const [error, setError] = useState("");
     const id = service.ID
-    console.log(service)
+    if (user) {
+        console.log(id)
+        console.log(service.ID_USUARIOS)
+        console.log(user.ID)
+        console.log(token)
+    }
+
+    const deleteServiceService = async (id) => {
+        try {
+            await deleteService({ id, token });
+            navigate("/");
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
     return (
         <article>
             <h3>{service.TITULO}</h3>
@@ -18,7 +39,13 @@ const Service = ({ service }) => {
             ) : null}
             <p>Estado: {service.STATUS}</p>
             <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
-            <Link to={`/service/${id}`}>Ver detalles</Link>
+            <p><Link to={`/service/${id}`}>Ver detalles </Link></p>
+            {user && user.ID === service.ID_USUARIOS ? (
+                <section>
+                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
+                    {error ? (<p>{error}</p>) : null}
+                </section>
+                ) : null}
         </article>
     );
 }

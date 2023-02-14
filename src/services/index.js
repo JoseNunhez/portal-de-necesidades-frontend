@@ -109,3 +109,15 @@ export const deleteService = async ({id, token }) => {
         throw new Error(json.message);
     }
 }
+
+export const loadUserDataService = async (id) => {
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/user/${id}`);
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+
+    return json.message;
+}

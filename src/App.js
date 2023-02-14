@@ -8,6 +8,7 @@ import Login from './pages/loginpage';
 import NotFoundPage from './pages/notfoundpage';
 import Register from './pages/registerpage';
 import ServicePage from './pages/servicepage';
+import UserPage from './pages/userpage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/service/:id" element={<ServicePage />} />
           <Route path="/service" element={<CreateServicePage />} />
+          <Route path="/user/:id" element={<UserPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

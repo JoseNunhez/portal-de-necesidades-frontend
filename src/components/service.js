@@ -8,6 +8,7 @@ const Service = ({ service, removeService }) => {
     const { navigate } = useNavigate();
     const [error, setError] = useState("");
     const id = service.ID
+    console.log(service)
 
     const deleteServiceService = async (id) => {
         try {
@@ -39,6 +40,7 @@ const Service = ({ service, removeService }) => {
             <p>Estado: {service.STATUS}</p>
             <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
             <p><Link to={`/service/${id}`}>Ver detalles </Link></p>
+            <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
                     <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>

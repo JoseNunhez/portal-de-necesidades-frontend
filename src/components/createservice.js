@@ -1,24 +1,24 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { createServiceService } from "../services";
 
 const CreateService = () => {
     const [error, setError] = useState('');
     const [creating, setCreating] = useState(false);
-    const {token} = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
+    const [serviceCreated, setServiceCreated] = useState(false);
 
     const handleForm = async (e) => {
         e.preventDefault();
         setError('');
-        console.log("e:" , e)
-        console.log("e.target:" , e.target)
-        console.log("formdata:" , new FormData(e.target))
 
         try {
             setCreating(true);
             const data = new FormData(e.target);
             console.log(data)
-            await createServiceService({token, data });
+            await createServiceService({ token, data });
+            setServiceCreated(true);
 
         } catch (error) {
             setError(error.message);
@@ -27,7 +27,7 @@ const CreateService = () => {
         }
     }
 
-    return (
+    return !serviceCreated ? (
         <form onSubmit={handleForm}>
             <fieldset>
                 <label htmlFor="title">Título: </label>
@@ -55,13 +55,18 @@ const CreateService = () => {
             </fieldset>
             <fieldset>
                 <label htmlFor="file">Archivo: </label>
-                <input type="file" id="file" name="file" required />
+                <input type="file" id="file" name="file"  />
             </fieldset>
             <button>Crear servicio</button>
             {creating ? <p>Creando servicio...</p> : null}
             {error ? <p>{error}</p> : null}
         </form>
-    )
+    ) : (
+            <section>
+                <p>Servicio creado correctamente</p>
+                <Link to="/">Volver a homepage </Link>
+            </section>
+        )
 }
 
 export default CreateService

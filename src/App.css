@@ -121,3 +121,9 @@ button > a {
 .servicelist {
   margin : 1rem;
 }
+
+.header-user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

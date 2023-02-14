@@ -9,6 +9,7 @@ export const AuthProviderComponent = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('token', token);
+        console.log(token)
     }, [token]);
 
     useEffect(() => {

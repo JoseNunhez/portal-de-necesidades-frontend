@@ -28,14 +28,13 @@ const Login = () => {
         }
     }
     return (
-        <section>
-            <h2>Login</h2>
+        <section className='homepage-head'>
             <form className='formulario' onSubmit={handleForm}>
                 <h3>Login</h3>
                     <input className='form-input' type="email" id="email" name="email" placeholder='Ingrese su correo electrónico' required onChange={(e) => setEmail(e.target.value)} />
                     <input className='form-input' type="password" id="password" name="password" placeholder='Ingrese su contraseña' required onChange={(e) => setPassword(e.target.value)}/>
                     <button className='boton-login'>Login</button>
-                    <p><Link to="/register">¿Aún no tengo cuenta?</Link></p>
+                    <p><Link to="/register">¿Aún no tienes cuenta?</Link></p>
                 {error ? <p>{error}</p> : null}
             </form>
         </section>

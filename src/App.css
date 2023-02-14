@@ -53,43 +53,18 @@ header {
 
 h3{
   text-transform: uppercase;
-
 }
 
-footer {
-  text-align: center;
-}
-section > form,
 section > h2 {
   margin-bottom: 1rem;
 }
 
 h2 {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  background-color: rgb(136, 159, 151);
+  text-align: center;
   color : white;
-}
-
-form input {
-  flex-grow: 1;
-  padding: 0.3rem 1rem;
-  align-items: center;
-}
-
-
-ul.services-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  list-style: none;
-  text-transform: initial;
-}
-
-ul.services-list li {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border: 1px solid #2F3E46;
-  border-radius: 0.5rem;
-  background-color: #ffe3b6;
 }
 
 .auth-conectado {
@@ -97,10 +72,6 @@ ul.services-list li {
   gap: 1rem;
   align-items: center;
   justify-content: right;
-}
-
-.servicelist {
-  margin : 1rem;
 }
 
 .header-user-image {

@@ -32,8 +32,7 @@ const Register = () => {
     }
 
     return (
-        <section>
-            <h2>Register</h2>
+        <section className='homepage-head'>
             <form className='formulario' onSubmit={handleForm}>
                 <h3>Formulario de registro</h3>
                     <input className='form-input' type="email" id="email" name="email" placeholder='Ingrese su correo electrónico' required />
@@ -43,7 +42,7 @@ const Register = () => {
                     <input className='form-input' type="file" id="image" name="image" accept="image/*" required onChange={(e) => setImage(e.target.files[0])} />
                     {image ? <p><img src={URL.createObjectURL(image)} alt="preview" height="50px"></img></p> : null}
                 <button>Register</button>
-                <p><Link to="/login">¿Ya tengo cuenta?</Link></p>
+                <p><Link to="/login">¿Ya tienes cuenta?</Link></p>
 
             </form>
                 {creating ? <p>Creating user...</p> : null}

@@ -21,7 +21,7 @@ const ServiceDetallado = ({ service }) => {
         }
     }
     return (
-        <article>
+        <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
             <p>{service.DESCRIPCION}</p>
             <p>Categoría: {service.ID_CATEGORIAS}</p>

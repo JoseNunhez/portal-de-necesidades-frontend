@@ -3,22 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { deleteService } from "../services";
 
-const Service = ({ service }) => {
-    const navigate = useNavigate();
-    const { user , token } = useContext(AuthContext);
+const Service = ({ service, removeService }) => {
+    const { user, token } = useContext(AuthContext);
+    const { navigate } = useNavigate();
     const [error, setError] = useState("");
     const id = service.ID
-    if (user) {
-        console.log(id)
-        console.log(service.ID_USUARIOS)
-        console.log(user.ID)
-        console.log(token)
-    }
 
     const deleteServiceService = async (id) => {
         try {
             await deleteService({ id, token });
-            navigate("/");
+
+            if (removeService) {
+                removeService(id);
+            } else {
+                navigate("/");
+            }
         } catch (error) {
             setError(error.message);
         }

@@ -6,7 +6,7 @@ import useServices from "../hooks/useServices";
 
 const HomePage = () => {
 
-    const { services, loading, error } = useServices();
+    const { services, loading, error, removeService } = useServices();
     const { user } = useContext(AuthContext);
 
     if (loading) {
@@ -24,7 +24,7 @@ const HomePage = () => {
                 {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
             </section>
             <section className="servicelist">
-                <ServicesList services={services} />
+                <ServicesList services={services} removeService = {removeService} />
             </section>
         </section>
     );

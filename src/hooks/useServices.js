@@ -24,8 +24,11 @@ const useServices = () => {
 
         loadServices();
     }, []);
+    const removeService = (id) => {
+        setServices(services.filter((service) => service.ID !== id));
+    };
 
-    return { services, loading, error };
+    return { services, loading, error, removeService };
 };
 
 export default useServices;

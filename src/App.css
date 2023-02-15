@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,200&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -8,11 +10,12 @@ a:link, a:visited, a:active, a{
   text-decoration:none;
 }
 header a {
-  color: #9cc5a5;
+  color: #fcff4b;
 }
 
 h1 a {
-  color: white;
+  color: rgb(0, 0, 0);
+  font-family: 'Montserrat';
 }
 
 h1 a:hover{
@@ -24,7 +27,7 @@ h1 a:hover{
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color:#52796F;
+  background-color:#ffffff;
 }
 main{
   flex: 1;
@@ -36,7 +39,7 @@ main{
 }
 
 header {
-  background-color:#354F52;
+  background-color:#fcff4b;
   color: white;
 }
 
@@ -87,5 +90,5 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #52796F;
+  background-color: #ffee00;
 }

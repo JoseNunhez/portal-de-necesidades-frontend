@@ -1,14 +1,16 @@
 button {
-  background: #84A98C;
-  padding: 10px;
+  background: #ffffff1a;
+  padding: 8px;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
   border-radius: 4px;
-  font-size: 18px;
-  font-family: 'calibri';
+  font-size: 14px;
+  font-family: 'Montserrat';
 }
 
 button:hover {
-  background: #2F3E46;
+  background: #ffffff;
   cursor: pointer;
 }
+
+button

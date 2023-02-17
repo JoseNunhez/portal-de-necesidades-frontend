@@ -16,7 +16,6 @@ const CreateService = () => {
         try {
             setCreating(true);
             const data = new FormData(e.target);
-            console.log(data)
             await createServiceService({ token, data });
             setServiceCreated(true);
 

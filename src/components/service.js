@@ -2,17 +2,32 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import useComments from "../hooks/useComments";
-import { deleteService } from "../services";
+import { createCommentService, deleteService } from "../services";
 import Comment from "./comment";
 
 const Service = ({ service, removeService }) => {
     const id = service.ID
     const { user, token } = useContext(AuthContext);
-    const [ showComments, setShowComments ] = useState(true);
+    const [showComments, setShowComments] = useState(true);
+    const [ comment , setComment ] = useState("");
     const { comments } = useComments(id, token);
     const { navigate } = useNavigate();
     const [error, setError] = useState("");
-    console.log(service)
+
+    const handleForm = async (e) => {
+        e.preventDefault();
+        console.log("comment", comment)
+        console.log("id", id)
+        console.log("token", token)
+
+        try {
+            await createCommentService({ id, token, texto:comment });
+
+        } catch (error) {
+            setError(error.message);
+            console.log(error.message)
+        }
+    }
 
     const deleteServiceService = async (id) => {
         try {
@@ -53,8 +68,8 @@ const Service = ({ service, removeService }) => {
             ) : null}
             <h4>COMENTARIOS:</h4>
             <form className="comment-form">
-            <input className="service-input" type="text" placeholder="Escribe un comentario" />
-                <button>Publicar</button>
+                <input className="service-input" type="text" placeholder="Escribe un comentario" name="comment" onChange={(e) => setComment(e.target.value)} />
+                <button onClick={handleForm}>Publicar</button>
             </form>
             
             {comments && comments.length > 0 ? (

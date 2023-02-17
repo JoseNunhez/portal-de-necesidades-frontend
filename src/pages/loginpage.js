@@ -20,7 +20,6 @@ const Login = () => {
 
         try {
             const data = await loginUserService({ email, password })
-            console.log(data)
             login(data);
             navigate("/");
         } catch (error) {

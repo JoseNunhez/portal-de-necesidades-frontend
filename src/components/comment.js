@@ -1,5 +1,4 @@
 const Comment = ({ comment }) => {
-    console.log("COMENTARIO", comment);
     return (
         <article className="single-comment">
             <p>{comment.TEXTO}</p>

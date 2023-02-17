@@ -1,6 +1,6 @@
 ul.services-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 1rem;
     list-style: none;
     text-transform: initial;
@@ -32,10 +32,8 @@ ul.services-list {
     box-shadow: 0 0 5px rgb(0, 0, 0);
     padding: 20px;
     margin: auto;
+    min-width: 500px;
     margin-top: 10px;
-    width: 50%;
-    min-width: 300px;
-    max-width: 500px;
 }
 .servicio-individual h3 {
     background-color: #ffd99b;

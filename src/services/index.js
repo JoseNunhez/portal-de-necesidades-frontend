@@ -11,19 +11,16 @@ export const loadAllServicesService = async () => {
 export const loadServiceByIdService = async (id) => {
 
     const response = await fetch((process.env.REACT_APP_API_URL_BD) + "/service/" + id);
-    console.log(response);
 
     const json = await response.json();
     if (!response.ok) {
         throw new Error(json.message);
     }
-    console.log(json.data);
     return json.data;
 }
 
 
 export const registerUserService = async ({ data }) => {
-    console.log(process.env.REACT_APP_API_URL_BD + '/user')
     const response = await fetch((process.env.REACT_APP_API_URL_BD)+ '/user', {
         method: 'POST',
         body: data,
@@ -131,6 +128,27 @@ export const loadCommentsService = async (id, token) => {
         },
     });
     
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+
+    return json.message;
+}
+
+export const createCommentService = async ({ id, token, texto }) => {
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/service/${id}/comments`, {
+        method: 'POST',
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            texto,
+        }),
+    });
 
     const json = await response.json();
 

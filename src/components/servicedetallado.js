@@ -10,7 +10,6 @@ const ServiceDetallado = ({ service }) => {
     const { token, user } = useContext(AuthContext)
     const id = service.ID
     const [error, setError] = useState("");
-    console.log(service.soluciones)
     const navigate = useNavigate();
     const { comments } = useComments(id, token);
 

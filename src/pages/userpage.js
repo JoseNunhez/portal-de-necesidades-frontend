@@ -9,7 +9,6 @@ const UserPage = () => {
     if (loading) return <p>Cargando...</p>
     if (error) return <p>{error}</p>
 
-    console.log("usuario que pido", user)
     return (
         <section className="carta-usuario">
             <h3>User {user.NOMBRE_USUARIO}</h3>

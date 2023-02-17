@@ -158,3 +158,21 @@ export const createCommentService = async ({ id, token, texto }) => {
 
     return json.message;
 }
+
+export const deleteCommentService = async ({ id, token }) => {
+    console.log("id y token",id, token)
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/comments/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': token,
+        },
+    });
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+
+    return json.message;
+}

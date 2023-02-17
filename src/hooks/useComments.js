@@ -28,8 +28,12 @@ const useComments = (id, token) => {
     const addComment = (comment) => {
         setComments([...comments, comment]);
     }
+
+    const removeComment = (id) => {
+        setComments(comments.filter((comment) => comment.ID !== id));
+    };
     
-    return { comments, loading, error, addComment };
+    return { comments, loading, error, addComment, removeComment };
 }
     
 export default useComments;

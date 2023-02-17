@@ -10,7 +10,7 @@ const Service = ({ service, removeService }) => {
     const { user, token } = useContext(AuthContext);
     const [showComments, setShowComments] = useState(true);
     const [ comment , setComment ] = useState("");
-    const { comments, addComment } = useComments(id, token);
+    const { comments, addComment, removeComment } = useComments(id, token);
     const { navigate } = useNavigate();
     const [error, setError] = useState("");
 
@@ -21,8 +21,11 @@ const Service = ({ service, removeService }) => {
         console.log("token", token)
 
         try {
-            const comentario = await createCommentService({ id, token, texto:comment });
+            const comentario = await createCommentService({ id, token, texto: comment });
+            
             addComment(comentario);
+
+            e.target.reset();
         } catch (error) {
             setError(error.message);
             console.log(error.message)
@@ -78,7 +81,7 @@ const Service = ({ service, removeService }) => {
                     <>
                     {comments.map((comment) => (
                         <section key={comment.ID + comment.CREATED_AT + comment.ID_USUARIOS}>
-                            <Comment comment={comment} />
+                            <Comment comment={comment} removeComment={removeComment} />
                         </section>))
                             }
                     </>) : null}    

@@ -24,8 +24,12 @@ const useComments = (id, token) => {
 
         loadComments();
     }, [id, token]);
+
+    const addComment = (comment) => {
+        setComments([...comments, comment]);
+    }
     
-    return { comments, loading, error };
+    return { comments, loading, error, addComment };
 }
     
 export default useComments;

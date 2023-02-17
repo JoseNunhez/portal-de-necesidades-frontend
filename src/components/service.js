@@ -16,9 +16,6 @@ const Service = ({ service, removeService }) => {
 
     const handleForm = async (e) => {
         e.preventDefault();
-        console.log("comment", comment)
-        console.log("id", id)
-        console.log("token", token)
 
         try {
             const comentario = await createCommentService({ id, token, texto: comment });
@@ -70,9 +67,9 @@ const Service = ({ service, removeService }) => {
                 </section>
             ) : null}
             <h4>COMENTARIOS:</h4>
-            <form className="comment-form">
+            <form className="comment-form" onSubmit={handleForm}>
                 <input className="service-input" type="text" placeholder="Escribe un comentario" name="comment" onChange={(e) => setComment(e.target.value)} />
-                <button onClick={handleForm}>Publicar</button>
+                <button>Publicar</button>
             </form>
             
             {comments && comments.length > 0 ? (

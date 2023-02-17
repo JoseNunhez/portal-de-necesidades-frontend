@@ -1,13 +1,17 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import useComments from "../hooks/useComments";
 import { deleteService } from "../services";
+import Comment from "./comment";
 
 const Service = ({ service, removeService }) => {
+    const id = service.ID
     const { user, token } = useContext(AuthContext);
+    const [ showComments, setShowComments ] = useState(true);
+    const { comments } = useComments(id, token);
     const { navigate } = useNavigate();
     const [error, setError] = useState("");
-    const id = service.ID
     console.log(service)
 
     const deleteServiceService = async (id) => {
@@ -27,7 +31,7 @@ const Service = ({ service, removeService }) => {
     return (
         <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
-            <p>{service.DESCRIPCION}</p>
+            <p>Descripcion: {service.DESCRIPCION}</p>
             <p>Categoría: {service.ID_CATEGORIAS}</p>
             <p>Subcategoría: {service.ID_SUBCATEGORIAS}</p>
             <p>Precio ofertado: {service.PRECIO}</p>
@@ -46,7 +50,26 @@ const Service = ({ service, removeService }) => {
                     <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
                     {error ? (<p>{error}</p>) : null}
                 </section>
-                ) : null}
+            ) : null}
+            <h4>COMENTARIOS:</h4>
+            <form className="comment-form">
+            <input className="service-input" type="text" placeholder="Escribe un comentario" />
+                <button>Publicar</button>
+            </form>
+            
+            {comments && comments.length > 0 ? (
+                <section className="comments-servicio">
+                    {showComments ? (
+                    <>
+                    {comments.map((comment) => (
+                        <section key={comment.ID + comment.CREATED_AT + comment.ID_USUARIOS}>
+                            <Comment comment={comment} />
+                        </section>))
+                            }
+                    </>) : null}    
+                    <button onClick={()=> setShowComments(!showComments)}>{showComments ? "Ocultar" : "Mostrar"}({comments.length})</button>
+                </section>
+            ) : <p className="no-comments">Sin comentarios</p>}
         </article>
     );
 }

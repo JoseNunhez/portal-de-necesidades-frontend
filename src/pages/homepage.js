@@ -21,7 +21,6 @@ const HomePage = () => {
         <section>
             <section className="homepage-head">
                 <h2>Servicios ofertados</h2>
-                <p>Parrafo de prueba</p>
                 {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
             </section>
             <section className="servicelist">

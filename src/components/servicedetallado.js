@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import useComments from "../hooks/useComments";
 import { deleteService } from "../services";
+import Comment from "./comment";
 import Solucion from "./solucion";
 
 const ServiceDetallado = ({ service }) => {
@@ -10,6 +12,7 @@ const ServiceDetallado = ({ service }) => {
     const [error, setError] = useState("");
     console.log(service.soluciones)
     const navigate = useNavigate();
+    const { comments } = useComments(id, token);
 
     const deleteServiceService = async (id) => {
         try {
@@ -23,7 +26,7 @@ const ServiceDetallado = ({ service }) => {
     return (
         <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
-            <p>{service.DESCRIPCION}</p>
+            <p>Descripcion: {service.DESCRIPCION}</p>
             <p>Categoría: {service.ID_CATEGORIAS}</p>
             <p>Subcategoría: {service.ID_SUBCATEGORIAS}</p>
             <p>Precio ofertado: {service.PRECIO}</p>
@@ -35,13 +38,36 @@ const ServiceDetallado = ({ service }) => {
                     <Solucion solucion={solucion} />
                 ))}
             </article>
-            <Link to={`/`}>Volver atrás</Link>
+            <p><Link to={`/`}>Volver atrás</Link></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
                     <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
                     {error ? (<p>{error}</p>) : null}
                 </section>
-                ) : null}
+            ) : null}
+            <p><Link to={`/service/${id}`}>Ver detalles </Link></p>
+            <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
+            {user && user.ID === service.ID_USUARIOS ? (
+                <section>
+                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
+                    {error ? (<p>{error}</p>) : null}
+                </section>
+            ) : null}
+            <h4>COMENTARIOS:</h4>
+            <form className="comment-form">
+            <input className="service-input" type="text" placeholder="Escribe un comentario" />
+                <button>Publicar</button>
+            </form>
+            
+            {comments && comments.length > 0 ? (
+                <section className="comments-servicio">
+                    {comments.map((comment) => (
+                        <section key={comment.ID + comment.CREATED_AT + comment.ID_USUARIOS}>
+                            <Comment comment={comment} />
+                        </section>))}
+                    <button>Ver comentarios({comments.length})</button>
+                </section>
+            ) : <p className="no-comments">Sin comentarios</p>}
         </article>
     );
 }

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { deleteCommentService } from "../services";
@@ -10,6 +10,7 @@ const Comment = ({ comment, removeComment }) => {
     const [error, setError] = useState(null);
 
     console.log("comentario", comment)
+    console.log("imagen", comment.IMAGEN)
 
     const deleteComment= async (id) => {
         try {
@@ -19,11 +20,11 @@ const Comment = ({ comment, removeComment }) => {
             setError(error);
         }
     }
-    return (
+    return user ? (
         <article className="single-comment">
             <p>{comment.TEXTO}</p>
-            <p><div>Publicado por <Link to={`/user/${comment.ID_USUARIOS}`}> {user.NOMBRE_USUARIO} </Link></div>
-                {user.IMAGEN ? <Link to={`/user/${comment.ID_USUARIOS}`} >{comment.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${comment.IMAGEN}`} alt="imagen usuario" width="30px" /> : null}</Link> : null}</p>
+            <p><Fragment>Publicado por <Link to={`/user/${comment.ID_USUARIOS}`}> {user && user.NOMBRE_USUARIO !== null ? user.NOMBRE_USUARIO : ""} </Link></Fragment>
+                <Link to={`/user/${comment.ID_USUARIOS}`} >{comment && comment.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${comment.IMAGEN}`} alt="imagen usuario" width="30px" /> : null}</Link></p>
             {user && user.ID === comment.ID_USUARIOS ? (
                 <section>
                 <button onClick={() => {if (window.confirm("Are you sure?")) deleteComment(comment.ID)}}> ELIMINAR COMENTARIO </button>
@@ -31,6 +32,10 @@ const Comment = ({ comment, removeComment }) => {
             </section>
             ) : null}
         </article>
+    ) : (
+            <article className="single-comment">
+                <p>Necesitas loguearte para ver este comentario</p>
+            </article>
     );
 }
 

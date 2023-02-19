@@ -23,7 +23,7 @@ const Comment = ({ comment, removeComment }) => {
     return user ? (
         <article className="single-comment">
             <p>{comment.TEXTO}</p>
-            <p><Fragment>Publicado por <Link to={`/user/${comment.ID_USUARIOS}`}> {user && user.NOMBRE_USUARIO !== null ? user.NOMBRE_USUARIO : ""} </Link></Fragment>
+            <p><Fragment>Publicado por <Link to={`/user/${comment.ID_USUARIOS}`}> {comment && comment.NOMBRE_USUARIO !== null ? comment.NOMBRE_USUARIO : ""} </Link></Fragment>
                 <Link to={`/user/${comment.ID_USUARIOS}`} >{comment && comment.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${comment.IMAGEN}`} alt="imagen usuario" width="30px" /> : null}</Link></p>
             {user && user.ID === comment.ID_USUARIOS ? (
                 <section>

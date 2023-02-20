@@ -5,6 +5,17 @@ const useComments = (id, token) => {
     const [comments, setComments] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const mappedComments = comments.map((comment) => ({
+        id: comment.ID,
+        texto: comment.TEXTO,
+        fecha: comment.CREATED_AT,
+        id_usuario: comment.ID_USUARIOS,
+        nombre_usuario: comment.NOMBRE_USUARIO,
+        imagen: comment.IMAGEN,
+        nombre: comment.NOMBRE,
+    }));
+        
     
     useEffect(() => {
         const loadComments = async () => {
@@ -33,7 +44,7 @@ const useComments = (id, token) => {
         setComments(comments.filter((comment) => comment.ID !== id));
     };
     
-    return { comments, loading, error, addComment, removeComment };
+    return { comments: mappedComments, loading, error, addComment, removeComment };
 }
     
 export default useComments;

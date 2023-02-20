@@ -9,9 +9,6 @@ const Comment = ({ comment, removeComment }) => {
     const { user, token } = useContext(AuthContext);
     const [error, setError] = useState(null);
 
-    console.log("comentario", comment)
-    console.log("imagen", comment.IMAGEN)
-
     const deleteComment= async (id) => {
         try {
             await deleteCommentService({ id, token });
@@ -20,14 +17,16 @@ const Comment = ({ comment, removeComment }) => {
             setError(error);
         }
     }
+
+
     return user ? (
         <article className="single-comment">
-            <p>{comment.TEXTO}</p>
-            <p><Fragment>Publicado por <Link to={`/user/${comment.ID_USUARIOS}`}> {comment && comment.NOMBRE_USUARIO !== null ? comment.NOMBRE_USUARIO : ""} </Link></Fragment>
-                <Link to={`/user/${comment.ID_USUARIOS}`} >{comment && comment.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${comment.IMAGEN}`} alt="imagen usuario" width="30px" /> : null}</Link></p>
-            {user && user.ID === comment.ID_USUARIOS ? (
+            <p>{comment.texto}</p>
+            <p><Fragment>Publicado por <Link to={`/user/${comment.id_usuario}`}> {comment && comment.nombre_usuario !== null ? comment.nombre_usuario : ""} </Link></Fragment>
+                <Link to={`/user/${comment.id_usuario}`} >{comment && comment.imagen ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${comment.imagen}`} alt="imagen usuario" width="30px" /> : null}</Link>en: {new Date (comment.fecha).toLocaleString()}</p>
+            {user && user.ID === comment.id_usuario ? (
                 <section>
-                <button onClick={() => {if (window.confirm("Are you sure?")) deleteComment(comment.ID)}}> ELIMINAR COMENTARIO </button>
+                <button onClick={() => {if (window.confirm("Are you sure?")) deleteComment(comment.id)}}> ELIMINAR COMENTARIO </button>
                 {error ? (<p>{error}</p>) : null}
             </section>
             ) : null}

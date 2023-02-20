@@ -77,7 +77,7 @@ const Service = ({ service, removeService }) => {
                     {showComments ? (
                     <>
                     {comments.map((comment) => (
-                        <section key={comment.ID + comment.CREATED_AT + comment.ID_USUARIOS}>
+                        <section key={comment.id + comment.fecha + comment.id_usuario}>
                             <Comment comment={comment} removeComment={removeComment} />
                         </section>))
                             }

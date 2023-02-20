@@ -61,7 +61,7 @@ const ServiceDetallado = ({ service }) => {
             {comments && comments.length > 0 ? (
                 <section className="comments-servicio">
                     {comments.map((comment) => (
-                        <section key={comment.ID + comment.CREATED_AT + comment.ID_USUARIOS}>
+                        <section key={comment.id + comment.fecha + comment.id_usuario}>
                             <Comment comment={comment} />
                         </section>))}
                     <button>Ver comentarios({comments.length})</button>

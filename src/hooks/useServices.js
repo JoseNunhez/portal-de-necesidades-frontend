@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { loadAllServicesService } from '../services';
 
-const useServices = () => {
+const useServices = ({sort}) => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,6 +12,7 @@ const useServices = () => {
                 setLoading(true);
                 
                 const data = await loadAllServicesService();
+                console.log("hace fetch")
                 
                 setServices(data);
 
@@ -28,7 +29,12 @@ const useServices = () => {
         setServices(services.filter((service) => service.ID !== id));
     };
 
-    return { services, loading, error, removeService };
+    const sortedServices = sort
+        ? [...services].sort((a, b) => new Date(a.CREATED_AT) - new Date(b.CREATED_AT))
+        : services;
+    
+
+    return { services: sortedServices, loading, error, sortedServices, removeService };
 };
 
 export default useServices;

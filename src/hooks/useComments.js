@@ -31,6 +31,7 @@ export function useComments({id, token}) {
         console.log("id", id)
         setComments(comments.filter((comment) => comment.id !== id));
     };
+
     
     return { comments, loading, error, addComment, removeComment};
 }

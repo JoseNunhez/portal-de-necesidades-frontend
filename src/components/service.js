@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import useComments from "../hooks/useComments";
+import { useComments } from "../hooks/useComments";
 import { createCommentService, deleteService } from "../services";
 import Comment from "./comment";
 
@@ -10,7 +10,7 @@ const Service = ({ service, removeService }) => {
     const { user, token } = useContext(AuthContext);
     const [showComments, setShowComments] = useState(true);
     const [ comment , setComment ] = useState("");
-    const { comments, addComment, removeComment } = useComments(id, token);
+    const { comments, addComment, removeComment} = useComments({ id, token });
     const { navigate } = useNavigate();
     const [error, setError] = useState("");
 
@@ -18,9 +18,22 @@ const Service = ({ service, removeService }) => {
         e.preventDefault();
 
         try {
-            const comentario = await createCommentService({ id, token, texto: comment });
+            const comentario = [await createCommentService({ id, token, texto: comment })];
+
+            console.log(comentario)
+            const mappedComment = comentario.map((comment) => ({
+                id: comment.ID,
+                texto: comment.TEXTO,
+                fecha: new Date().toLocaleString(),
+                id_usuario: user.ID,
+                nombre_usuario: user.NOMBRE_USUARIO,
+                imagen: user.IMAGEN,
+                nombre: user.NOMBRE,
+            }));
+
+            console.log(mappedComment)
             
-            addComment(comentario);
+            addComment(mappedComment[0]);
 
             e.target.reset();
         } catch (error) {

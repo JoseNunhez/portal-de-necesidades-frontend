@@ -120,24 +120,6 @@ export const loadUserDataService = async (id) => {
 }
 
 
-export const loadCommentsService = async (id, token) => {
-    const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/service/${id}/comments`, {
-        method: 'GET',
-        headers: {
-            'Authorization': token,
-        },
-    });
-    
-
-    const json = await response.json();
-
-    if(!response.ok) {
-        throw new Error(json.message);
-    }
-
-    return json.message;
-}
-
 export const createCommentService = async ({ id, token, texto }) => {
     const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/service/${id}/comments`, {
         method: 'POST',
@@ -160,7 +142,6 @@ export const createCommentService = async ({ id, token, texto }) => {
 }
 
 export const deleteCommentService = async ({ id, token }) => {
-    console.log("id y token",id, token)
     const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/comments/${id}`, {
         method: 'DELETE',
         headers: {

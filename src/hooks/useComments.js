@@ -1,50 +1,36 @@
 import { useEffect, useState } from "react";
-import { loadCommentsService } from "../services";
+import loadComments from "../services/loadcomments";
 
-const useComments = (id, token) => {
+export function useComments({id, token}) {
     const [comments, setComments] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const mappedComments = comments.map((comment) => ({
-        id: comment.ID,
-        texto: comment.TEXTO,
-        fecha: comment.CREATED_AT,
-        id_usuario: comment.ID_USUARIOS,
-        nombre_usuario: comment.NOMBRE_USUARIO,
-        imagen: comment.IMAGEN,
-        nombre: comment.NOMBRE,
-    }));
-        
-    
     useEffect(() => {
-        const loadComments = async () => {
+        const gettingComments = async () => {
             try {
                 setLoading(true);
-
-                const data = await loadCommentsService(id, token);
-
-                setComments(data);
-
+                setError(null);
+                const newComments = await loadComments({ id, token });
+                setComments(newComments);
             } catch (error) {
                 setError(error);
             } finally {
                 setLoading(false);
             }
         };
-
-        loadComments();
+        gettingComments();
     }, [id, token]);
 
-    const addComment = (comment) => {
-        setComments([...comments, comment]);
+    const addComment = (data) => {
+        console.log("data", data)
+        setComments([data, ...comments]);
     }
 
     const removeComment = (id) => {
-        setComments(comments.filter((comment) => comment.ID !== id));
+        console.log("id", id)
+        setComments(comments.filter((comment) => comment.id !== id));
     };
     
-    return { comments: mappedComments, loading, error, addComment, removeComment };
+    return { comments, loading, error, addComment, removeComment};
 }
-    
-export default useComments;

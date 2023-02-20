@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import useComments from "../hooks/useComments";
+import { useComments } from "../hooks/useComments";
 import { deleteService } from "../services";
 import Comment from "./comment";
 import Solucion from "./solucion";
@@ -11,7 +11,7 @@ const ServiceDetallado = ({ service }) => {
     const id = service.ID
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const { comments } = useComments(id, token);
+    const { comments } = useComments({ id, token });
 
     const deleteServiceService = async (id) => {
         try {

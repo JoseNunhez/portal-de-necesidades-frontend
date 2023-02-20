@@ -9,9 +9,7 @@
 a:link, a:visited, a:active, a{
   text-decoration:none;
 }
-header a {
-  color: #fcff4b;
-}
+
 
 h1 a {
   color: rgb(0, 0, 0);
@@ -32,26 +30,6 @@ h1 a:hover{
 main{
   flex: 1;
   padding: 1rem;
-}
-
-#root > header {
-  padding: 1rem;
-}
-
-header {
-  background-color:#fcff4b;
-  color: white;
-}
-
-#root > header h1{
-  margin-bottom: 1rem;
-  color: rgb(255, 255, 255);
-}
-
-#root > header ul {
-  display: flex;
-  list-style: none;
-  gap : 1rem;
 }
 
 h3{
@@ -90,5 +68,5 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffee00;
+  background-color: #fff159;
 }

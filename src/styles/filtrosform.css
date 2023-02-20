@@ -1,13 +1,14 @@
 .filtros-servicios {
     display: flex;
     flex-direction: column;
-    background-color: #ffe3b6;
+    background-color: #ffffff;
     gap: 1rem;
     padding: 1rem;
     margin: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgb(0, 0, 0);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.137);
+    font-family: 'Montserrat';
   }
 
   .filtros-form {
@@ -16,10 +17,10 @@
   }
 
   .filtros-form p {
-    background-color: #fcefdab1;
+    background-color: #f8f5efb1;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgb(0, 0, 0);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.137);
     padding: 0.5rem;
 }
 

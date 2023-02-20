@@ -25,7 +25,7 @@ const Service = ({ service, removeService }) => {
             const mappedComment = comentario.map((comment) => ({
                 id: comment.ID,
                 texto: comment.TEXTO,
-                fecha: new Date().toLocaleString(),
+                fecha: new Date(),
                 id_usuario: user.ID,
                 nombre_usuario: user.NOMBRE_USUARIO,
                 imagen: user.IMAGEN,

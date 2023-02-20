@@ -1,3 +1,4 @@
+import "../styles/filtrosform.css";
 
 export const Filtros = ({ setSort}) => {
     const handleSubmit = (event) => {
@@ -20,9 +21,9 @@ export const Filtros = ({ setSort}) => {
                 <section className="filtros-generales">
                     <h5>Filtros</h5>
                     <form className="filtros-form" onSubmit={handleSubmit}>                
-                        <p>Ordenar por fecha de publicación <input type="radio" name="sort-general"  id="sort-publicacion" /></p>
-                        <p>Ordenar por precio <input type="radio"name="sort-general" id="sort-precio" /></p>   
-                        <p>Ordenar por fecha de entrega <input type="radio" name="sort-general" id="sort-entrega" /></p>
+                        <p>Ordenar por fecha de publicación <input type="radio" name="sort-general"  id="sort-publicacion" className="checkmarck" /></p>
+                        <p>Ordenar por precio <input type="radio"name="sort-general" id="sort-precio" className="checkmarck" /></p>   
+                        <p>Ordenar por fecha de entrega <input type="radio" name="sort-general" id="sort-entrega" className="checkmarck" /></p>
                         <button>Filtrar</button>
                     </form>
                 </section>

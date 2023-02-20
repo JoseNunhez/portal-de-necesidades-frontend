@@ -28,13 +28,17 @@ const useServices = ({sort}) => {
     const removeService = (id) => {
         setServices(services.filter((service) => service.ID !== id));
     };
+    const getSortedServices = () => {
 
-    const sortedServices = sort
-        ? [...services].sort((a, b) => new Date(a.CREATED_AT) - new Date(b.CREATED_AT))
-        : services;
+        const sortedServices = sort
+            ? [...services].sort((a, b) => new Date(a.CREATED_AT) - new Date(b.CREATED_AT))
+            : services;
+        
+        return sortedServices;
+    }
     
 
-    return { services: sortedServices, loading, error, sortedServices, removeService };
+    return { services: getSortedServices(services), loading, error, removeService };
 };
 
 export default useServices;

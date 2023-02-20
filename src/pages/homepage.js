@@ -24,13 +24,18 @@ const HomePage = () => {
 
     return (
         <section>
-            <section className="homepage-head">
-                <h2>Servicios ofertados</h2>
-                <section className="filtros-servicios">
-                    <p>Ordenar por fecha de publicación<input type="checkbox" onChange={handleSort} checked={sort} /></p>
+                <section className="homepage-head">
+                    <h2>Servicios ofertados</h2>
+                    {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
                 </section>
-                {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
-            </section>
+                <section className="filtros-servicios">
+                    <h5>Filtros</h5>
+                    <form className="filtros-form">                
+                        <p>Ordenar por fecha de publicación <input type="checkbox" onChange={handleSort} checked={sort} /></p>
+                        <p>Ordenar por precio <input type="checkbox" /></p>   
+                        <p>Ordenar por fecha de entrega <input type="checkbox" /></p>
+                    </form>
+                </section>
             <section className="servicelist">
                 <ServicesList services={services} removeService = {removeService} />
             </section>

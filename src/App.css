@@ -26,7 +26,7 @@ h1 a:hover{
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color:#ffffff;
+  background-color:#52796F;
 }
 main{
   flex: 1;
@@ -69,5 +69,5 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff159;
+  background-color: #52796F;
 }

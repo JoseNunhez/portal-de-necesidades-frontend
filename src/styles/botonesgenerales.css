@@ -1,5 +1,5 @@
 button {
-  background: #ffffff1a;
+  background: #84A98C;
   padding: 8px;
   border: none;
   color: rgb(0, 0, 0);
@@ -9,6 +9,6 @@ button {
 }
 
 button:hover {
-  background: #ffffff;
+  background: #2F3E46;
   cursor: pointer;
 }

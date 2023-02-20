@@ -7,7 +7,8 @@ import useServices from "../hooks/useServices";
 
 const HomePage = () => {
 
-    const [sort, setSort] = useState(false);
+    const [sort, setSort] = useState("");
+    console.log(sort)
     const { services, loading, error, removeService } = useServices({sort});
     const { user } = useContext(AuthContext);
 

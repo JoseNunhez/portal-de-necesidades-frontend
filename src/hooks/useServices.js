@@ -29,9 +29,16 @@ const useServices = ({sort}) => {
         setServices(services.filter((service) => service.ID !== id));
     };
     const getSortedServices = () => {
-        const sortedServices = sort
-            ? [...services].sort((a, b) => new Date(a.CREATED_AT) - new Date(b.CREATED_AT))
-            : services;
+        let sortedServices = [...services]
+        if (sort === "publicacion") {
+            sortedServices.sort((a, b) => new Date(a.CREATED_AT) - new Date(b.CREATED_AT));
+        } else if (sort === "precio") {
+            sortedServices.sort((a, b) => a.PRECIO - b.PRECIO);
+        } else if (sort === "entrega") {
+            sortedServices.sort((a, b) => b.FECHA_LIMITE - a.FECHA_LIMITE);
+        } else if (sort === "") {
+            return sortedServices
+        }
         
         return sortedServices;
     }

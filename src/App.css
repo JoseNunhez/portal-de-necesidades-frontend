@@ -65,6 +65,8 @@ h2 {
   background-color: rgb(136, 159, 151);
   text-align: center;
   color : white;
+  border : 1px solid #52796F;
+  box-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
 .auth-conectado {

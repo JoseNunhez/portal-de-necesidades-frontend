@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './components/footer';
 import Header from './components/header';
+import ActualizarUserPage from './pages/actualizaruserpage';
 import CreateServicePage from './pages/createservicepage';
 import HomePage from './pages/homepage';
 import Login from './pages/loginpage';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/service/:id" element={<ServicePage />} />
           <Route path="/service" element={<CreateServicePage />} />
           <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/actualizar/user/:id" element={<ActualizarUserPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

@@ -9,17 +9,14 @@ export const AuthProviderComponent = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('token', token);
-        console.log(token)
     }, [token]);
 
     useEffect(() => {
         const getUserData = async () => {
             try {
                 const userData = await getMyUserDataService(token);
-                console.log(userData)
                 setUser(userData);
             } catch (error) {
-                console.log(error);
                 logout();
             }
             

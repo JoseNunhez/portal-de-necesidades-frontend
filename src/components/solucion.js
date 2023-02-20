@@ -1,5 +1,4 @@
 const Solucion = ({ solucion }) => {
-    console.log("solucionUnica:", solucion)
     return (
         <article>
             <p>{solucion.FILE_NAME}</p>

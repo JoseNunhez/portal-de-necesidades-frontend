@@ -1,14 +1,47 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { deleteService } from "../services";
+import { useComments } from "../hooks/useComments";
+import { createCommentService, deleteService } from "../services";
+import Comment from "./comment";
+import { NoComments } from "./nocomments";
 
 const Service = ({ service, removeService }) => {
+    const id = service.ID
     const { user, token } = useContext(AuthContext);
+    const [showComments, setShowComments] = useState(true);
+    const [ comment , setComment ] = useState("");
+    const { comments, addComment, removeComment} = useComments({ id, token });
     const { navigate } = useNavigate();
     const [error, setError] = useState("");
-    const id = service.ID
-    console.log(service)
+
+    const handleForm = async (e) => {
+        e.preventDefault();
+
+        try {
+            const comentario = [await createCommentService({ id, token, texto: comment })];
+
+            console.log(comentario)
+            const mappedComment = comentario.map((comment) => ({
+                id: comment.ID,
+                texto: comment.TEXTO,
+                fecha: new Date(),
+                id_usuario: user.ID,
+                nombre_usuario: user.NOMBRE_USUARIO,
+                imagen: user.IMAGEN,
+                nombre: user.NOMBRE,
+            }));
+
+            console.log(mappedComment)
+            
+            addComment(mappedComment[0]);
+
+            e.target.reset();
+        } catch (error) {
+            setError(error.message);
+            console.log(error.message)
+        }
+    }
 
     const deleteServiceService = async (id) => {
         try {
@@ -27,7 +60,7 @@ const Service = ({ service, removeService }) => {
     return (
         <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
-            <p>{service.DESCRIPCION}</p>
+            <p>Descripcion: {service.DESCRIPCION}</p>
             <p>Categoría: {service.ID_CATEGORIAS}</p>
             <p>Subcategoría: {service.ID_SUBCATEGORIAS}</p>
             <p>Precio ofertado: {service.PRECIO}</p>
@@ -39,14 +72,34 @@ const Service = ({ service, removeService }) => {
             ) : null}
             <p>Estado: {service.STATUS}</p>
             <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
-            <p><Link to={`/service/${id}`}>Ver detalles </Link></p>
+            <p><Link to={`/service/${id}`}>Contratar servicio</Link></p>
             <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
                     <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
                     {error ? (<p>{error}</p>) : null}
                 </section>
-                ) : null}
+            ) : null}
+            <h4>Comentarios:</h4>
+            <form className="comment-form" onSubmit={handleForm}>
+                <input className="service-input" type="text" placeholder="Escribe un comentario" name="comment" onChange={(e) => setComment(e.target.value)} />
+                <button>Publicar</button>
+            </form>
+            {user ? (
+            comments && comments.length > 0 ? (
+                <section className="comments-servicio">
+                    {showComments ? (
+                    <>
+                    {comments.map((comment) => (
+                        <section key={comment.id + comment.fecha + comment.id_usuario}>
+                            <Comment comment={comment} removeComment={removeComment} />
+                        </section>))
+                            }
+                    </>) : null}    
+                    <button onClick={()=> setShowComments(!showComments)}>{showComments ? "Ocultar" : "Mostrar"}({comments.length})</button>
+                </section>
+                ) : <p className="no-comments">Sin comentarios</p>
+             ) : <NoComments />}
         </article>
     );
 }

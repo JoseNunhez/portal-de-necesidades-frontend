@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Filtros } from "../components/filtros";
 import ServicesList from "../components/servicesList";
 import { AuthContext } from "../context/AuthContext";
 import useServices from "../hooks/useServices";
 
 const HomePage = () => {
 
-    const { services, loading, error, removeService } = useServices();
+    const [sort, setSort] = useState("");
+    console.log(sort)
+    const { services, loading, error, removeService } = useServices({sort});
     const { user } = useContext(AuthContext);
 
     if (loading) {
@@ -19,11 +22,12 @@ const HomePage = () => {
 
     return (
         <section>
-            <section className="homepage-head">
-                <h2>Servicios ofertados</h2>
-                <p>Parrafo de prueba</p>
-                {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
+                <section className="homepage-head">
+                    <h2>Servicios ofertados</h2>
+                    {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
             </section>
+            <Filtros sort={sort} setSort={setSort} />
+                
             <section className="servicelist">
                 <ServicesList services={services} removeService = {removeService} />
             </section>

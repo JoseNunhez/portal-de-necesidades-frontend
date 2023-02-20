@@ -1,15 +1,17 @@
-import { useParams } from "react-router-dom"
+import { useContext } from "react"
+import { Link, useParams } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
 import useUser from "../hooks/useUser"
 import "../styles/user.css"
 
 const UserPage = () => {
     const { id } = useParams()
     const { user, loading, error } = useUser(id)
+    const { user: userLogged } = useContext(AuthContext)
 
     if (loading) return <p>Cargando...</p>
     if (error) return <p>{error}</p>
 
-    console.log("usuario que pido", user)
     return (
         <section className="carta-usuario">
             <h3>User {user.NOMBRE_USUARIO}</h3>
@@ -18,6 +20,7 @@ const UserPage = () => {
             <p>User id: {user.ID}</p>
             <p>Nombre: {user.NOMBRE}</p>
             <p>Activo desde: {new Date(user.CREATED_AT).toLocaleDateString()}</p>
+            {userLogged && userLogged.ID === user.ID ? <Link to={`/actualizar/user/${id}`}>Actualiza tu perfil</Link> : null}
         </section>
     )
 }

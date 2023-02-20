@@ -61,8 +61,8 @@ const Service = ({ service, removeService }) => {
         <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
             <p>Descripcion: {service.DESCRIPCION}</p>
-            <p>Categoría: {service.ID_CATEGORIAS}</p>
-            <p>Subcategoría: {service.ID_SUBCATEGORIAS}</p>
+            <p>Categoría: {service.CATEGORIAS}</p>
+            <p>Subcategoría: {service.SUBCATEGORIAS}</p>
             <p>Precio ofertado: {service.PRECIO}</p>
             {service.FICHERO_DIGITAL ? (
                 <p>Archivo adjunto:

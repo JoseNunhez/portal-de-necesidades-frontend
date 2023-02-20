@@ -44,7 +44,7 @@ const ServiceDetallado = ({ service }) => {
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}
-            <p><Link to={`/service/${id}`}>Ver detalles </Link></p>
+            <p><Link to={`/service/${id}`}>Contratar servicio </Link></p>
             <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
@@ -52,7 +52,7 @@ const ServiceDetallado = ({ service }) => {
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}
-            <h4>COMENTARIOS:</h4>
+            <h4>Comentarios:</h4>
             <form className="comment-form">
             <input className="service-input" type="text" placeholder="Escribe un comentario" />
                 <button>Publicar</button>

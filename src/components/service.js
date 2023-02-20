@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useComments } from "../hooks/useComments";
 import { createCommentService, deleteService } from "../services";
 import Comment from "./comment";
+import { NoComments } from "./nocomments";
 
 const Service = ({ service, removeService }) => {
     const id = service.ID
@@ -71,7 +72,7 @@ const Service = ({ service, removeService }) => {
             ) : null}
             <p>Estado: {service.STATUS}</p>
             <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
-            <p><Link to={`/service/${id}`}>Ver detalles </Link></p>
+            <p><Link to={`/service/${id}`}>Contratar servicio</Link></p>
             <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
@@ -79,13 +80,13 @@ const Service = ({ service, removeService }) => {
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}
-            <h4>COMENTARIOS:</h4>
+            <h4>Comentarios:</h4>
             <form className="comment-form" onSubmit={handleForm}>
                 <input className="service-input" type="text" placeholder="Escribe un comentario" name="comment" onChange={(e) => setComment(e.target.value)} />
                 <button>Publicar</button>
             </form>
-            
-            {comments && comments.length > 0 ? (
+            {user ? (
+            comments && comments.length > 0 ? (
                 <section className="comments-servicio">
                     {showComments ? (
                     <>
@@ -97,7 +98,8 @@ const Service = ({ service, removeService }) => {
                     </>) : null}    
                     <button onClick={()=> setShowComments(!showComments)}>{showComments ? "Ocultar" : "Mostrar"}({comments.length})</button>
                 </section>
-            ) : <p className="no-comments">Sin comentarios</p>}
+                ) : <p className="no-comments">Sin comentarios</p>
+             ) : <NoComments />}
         </article>
     );
 }

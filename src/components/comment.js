@@ -19,7 +19,7 @@ const Comment = ({ comment, removeComment }) => {
     }
 
 
-    return user ? (
+    return  (
         <article className="single-comment">
             <p>{comment.texto}</p>
             <p><Fragment>Publicado por <Link to={`/user/${comment.id_usuario}`}> {comment && comment.nombre_usuario !== null ? comment.nombre_usuario : ""} </Link></Fragment>
@@ -31,11 +31,7 @@ const Comment = ({ comment, removeComment }) => {
             </section>
             ) : null}
         </article>
-    ) : (
-            <article className="single-comment">
-                <p>Necesitas loguearte para ver este comentario</p>
-            </article>
-    );
+    ) 
 }
 
 export default Comment;

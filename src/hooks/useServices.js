@@ -29,7 +29,6 @@ const useServices = ({sort}) => {
         setServices(services.filter((service) => service.ID !== id));
     };
     const getSortedServices = () => {
-
         const sortedServices = sort
             ? [...services].sort((a, b) => new Date(a.CREATED_AT) - new Date(b.CREATED_AT))
             : services;

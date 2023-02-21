@@ -7,10 +7,12 @@
 }
 
 a:link, a:visited, a:active, a{
+  color: rgb(28, 87, 175);
   text-decoration:none;
 }
 
-h1 a {
+h1 a,
+h1 a:visited {
   color: white;
   font-family: 'Montserrat';
 }

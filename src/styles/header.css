@@ -1,4 +1,23 @@
-.user-header:hover {
-  cursor: pointer;
-  text-decoration: underline;
+#root > header {
+  padding: 1rem;
+}
+
+header {
+  background-color:#354F52;
+  color: white;
+}
+
+#root > header h1{
+  margin-bottom: 1rem;
+  color: rgb(255, 255, 255);
+}
+
+#root > header ul {
+  display: flex;
+  list-style: none;
+  gap : 1rem;
+}
+
+ header .user-header {
+  color: #84A98C;
 }

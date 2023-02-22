@@ -18,10 +18,27 @@ const ActualizarUserPage = () => {
             <p>FALTA IMPLEMENTAR CON useForms HOOKS, PENDIENTE</p>
             {user.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${user.IMAGEN}`} alt="imagen usuario" width="100px" /> : null}
             <form className="formulario">
-                <input className="form-input" type="email" id="email" name="email" placeholder={user.EMAIL ? user.EMAIL : "Escribe tu nuevo email"} required/>
+                <fieldset>
+                    <label htmlFor="email">Email</label>
+                    <input 
+                    className="form-input" 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder={user.EMAIL ? user.EMAIL : "Escribe tu nuevo email"} required/>
+                </fieldset>
+               <fieldset>
+                <label htmlFor="nameUser">Nombre de usuario</label>
                 <input className="form-input" type="text" id="nameUser" name="nameUser" placeholder={user.NOMBRE && user.NOMBRE > 0 ? user.NOMBRE : "Escribe tu nombre"} value="jose" required/>
+               </fieldset>
+                <fieldset>
+                <label htmlFor="biografia">Biografia</label>
                 <input className="form-input" type="text" id="biografia" name="biografia" placeholder={user.BIOGRAFIA}/>
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="password">Contraseña</label>
                 <input className="form-input" type="password" id="password" name="password" placeholder="Nueva contraseña"/>
+                </fieldset>
                 <button>Actualizar</button>
             </form>
             <p>Activo desde: {new Date(user.CREATED_AT).toLocaleDateString()}</p>

@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { updateUserService } from '../services';
+
 
 import useUser from "../hooks/useUser"
 import "../styles/user.css"
@@ -15,29 +16,41 @@ const ActualizarUserPage = () => {
     const { token } = useContext(AuthContext);
     const [updating, setUpdating] = useState(false);
     const [updatedUser, setUpdatedUser] = useState(false);
+
+    const [email, setEmail] = useState();
+    const [nameUser, setNameUser] = useState();
+    const [biografia, setBiografia] = useState();
+    const [password, setPassword] = useState();
     
+    useEffect(() => {
+        if (!user) return;
+        setEmail(user.EMAIL);
+        setNameUser(user.NOMBRE);
+        setBiografia(user.BIOGRAFIA);
+        setPassword(user.CONTRASENHA)
+    }, [user])
+
     if (userLoading) return <p>Cargando...</p>
-    if (userError) return <p>{userError}</p>
-    if (error) return <p>error</p>
     if (updating) return <p>Actualizando</p>
     if (updatedUser) return <p>Su usuario ha sido actualizado vuelva a Iniciar sesión <button onClick={logout}> Login </button></p>
-
+    
     const handleForm = async (e) => {
         e.preventDefault();
         setError('');
 
         try {
             setUpdating(true);
-            const data = new FormData(e.target);
+            const data = { email, nameUser, biografia, password }
             await updateUserService({ token, data });
             setUpdatedUser(true);
-
+            
         } catch (error) {
             setError(error.message);
         } finally {
             setUpdating(false);
         }
     }
+    
     
     return (
         <section className="carta-usuario">
@@ -50,24 +63,30 @@ const ActualizarUserPage = () => {
                     className="form-input" 
                     type="email" 
                     id="email" 
-                    name="email" 
-                    placeholder="Escribe tu nuevo email" required/>
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Correo electrónico" required/>
                 </fieldset>
                <fieldset>
-                <label htmlFor="nameUser">Nombre de usuario</label>
-                <input className="form-input" type="text" id="nameUser" name="nameUser" placeholder="Escribe tu nombre" required/>
+                <label htmlFor="nameUser">Nombre</label>
+                <input className="form-input" type="text" id="nameUser" name="nameUser" placeholder="Nombre" value={nameUser}
+                    onChange={(e) => setNameUser(e.target.value)} required/>
                </fieldset>
                 <fieldset>
                 <label htmlFor="biografia">Biografia</label>
-                <input className="form-input" type="text" id="biografia" name="biografia" placeholder={user.BIOGRAFIA}/>
+                <input className="form-input" type="text" id="biografia" name="biografia" placeholder={user.BIOGRAFIA} value={biografia}
+                    onChange={(e) => setBiografia(e.target.value)}/>
                 </fieldset>
                 <fieldset>
                     <label htmlFor="password">Contraseña</label>
-                <input className="form-input" type="password" id="password" name="password" placeholder="Nueva contraseña"/>
+                <input className="form-input" type="password" id="password" name="password" placeholder="Nueva contraseña" value={password}
+                    onChange={(e) => setPassword(e.target.value)}/>
                 </fieldset>
                 <button>Actualizar</button>
             </form>
             <p>Activo desde: {new Date(user.CREATED_AT).toLocaleDateString()}</p>
+            {error ? <p>{error}</p>: null} 
             {userLogged && userLogged.ID === user.ID ? <Link to="/actualizar/user">Actualiza tu perfil</Link> : null}
         </section>
     ) 

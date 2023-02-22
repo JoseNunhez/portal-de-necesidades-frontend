@@ -1,23 +1,49 @@
-import { useContext } from "react"
+import { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
+import { updateUserService } from '../services';
+
 import useUser from "../hooks/useUser"
 import "../styles/user.css"
 
 const ActualizarUserPage = () => {
     const { id } = useParams()
-    const { user, loading, error } = useUser(id)
-    const { user: userLogged } = useContext(AuthContext)
+    const { user, loading: userLoading, error: userError } = useUser(id)
+    const { user: userLogged, logout } = useContext(AuthContext)
 
-    if (loading) return <p>Cargando...</p>
-    if (error) return <p>{error}</p>
+    const [error, setError] = useState('');
+    const { token } = useContext(AuthContext);
+    const [updating, setUpdating] = useState(false);
+    const [updatedUser, setUpdatedUser] = useState(false);
+    
+    if (userLoading) return <p>Cargando...</p>
+    if (userError) return <p>{userError}</p>
+    if (error) return <p>error</p>
+    if (updating) return <p>Actualizando</p>
+    if (updatedUser) return <p>Su usuario ha sido actualizado vuelva a Iniciar sesión <button onClick={logout}> Login </button></p>
 
-    return  (
+    const handleForm = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            setUpdating(true);
+            const data = new FormData(e.target);
+            await updateUserService({ token, data });
+            setUpdatedUser(true);
+
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setUpdating(false);
+        }
+    }
+    
+    return (
         <section className="carta-usuario">
             <h3>User {user.NOMBRE_USUARIO}</h3>
-            <p>FALTA IMPLEMENTAR CON useForms HOOKS, PENDIENTE</p>
             {user.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${user.IMAGEN}`} alt="imagen usuario" width="100px" /> : null}
-            <form className="formulario">
+            <form className="formulario" onSubmit={handleForm}>
                 <fieldset>
                     <label htmlFor="email">Email</label>
                     <input 
@@ -25,11 +51,11 @@ const ActualizarUserPage = () => {
                     type="email" 
                     id="email" 
                     name="email" 
-                    placeholder={user.EMAIL ? user.EMAIL : "Escribe tu nuevo email"} required/>
+                    placeholder="Escribe tu nuevo email" required/>
                 </fieldset>
                <fieldset>
                 <label htmlFor="nameUser">Nombre de usuario</label>
-                <input className="form-input" type="text" id="nameUser" name="nameUser" placeholder={user.NOMBRE && user.NOMBRE > 0 ? user.NOMBRE : "Escribe tu nombre"} value="jose" required/>
+                <input className="form-input" type="text" id="nameUser" name="nameUser" placeholder="Escribe tu nombre" required/>
                </fieldset>
                 <fieldset>
                 <label htmlFor="biografia">Biografia</label>

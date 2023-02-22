@@ -157,3 +157,20 @@ export const deleteCommentService = async ({ id, token }) => {
 
     return json.message;
 }
+
+export const updateUserService = async ( { token, data }) => {
+    const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/user`, {
+        method: 'PUT',
+        body: data,
+        headers: {
+            'Authorization': token,
+        },
+    });
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+
+}

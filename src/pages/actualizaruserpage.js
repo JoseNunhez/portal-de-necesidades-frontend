@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { updateUserService } from '../services';
 
@@ -10,7 +10,7 @@ import "../styles/user.css"
 const ActualizarUserPage = () => {
     const { id } = useParams()
     const { user, loading: userLoading } = useUser(id)
-    const { user: userLogged, logout } = useContext(AuthContext)
+    const { setToken, setUser } = useContext(AuthContext)
 
     const [error, setError] = useState('');
     const { token } = useContext(AuthContext);
@@ -35,7 +35,11 @@ const ActualizarUserPage = () => {
 
     if (userLoading) return <p>Cargando...</p>
     if (updating) return <p>Actualizando</p>
-    if (updatedUser) return <p>Su usuario ha sido actualizado vuelva a Iniciar sesión <button onClick={logout}> Login </button></p>
+    if (updatedUser) {
+        setToken('');
+        setUser(null);
+        return <p>Su usuario ha sido actualizado vuelva a Iniciar sesión</p>
+    }
     
     
     const handleForm = async (e) => {
@@ -106,7 +110,6 @@ const ActualizarUserPage = () => {
             </form>
             <p>Activo desde: {new Date(user.CREATED_AT).toLocaleDateString()}</p>
             {error ? <p>{error}</p>: null} 
-            {userLogged && userLogged.ID === user.ID ? <Link to="/actualizar/user">Actualiza tu perfil</Link> : null}
         </section>
     ) 
 }

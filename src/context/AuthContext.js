@@ -20,12 +20,14 @@ export const AuthProviderComponent = ({ children }) => {
                 const userData = await getMyUserDataService(token);
                 setUser(userData);
             } catch (error) {
-                logout();
+                setToken('');
+                setUser(null);
+                navigate("/login")
             }
             
         }
         if(token) getUserData();
-    }, [token]);
+    }, [token, navigate]);
 
     const login = (token) => {
         setToken(token);
@@ -37,5 +39,5 @@ export const AuthProviderComponent = ({ children }) => {
         navigate("/login")
     }
 
-    return <AuthContext.Provider value={{token, user, login, logout}}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{token, user, setToken, setUser, login, logout}}>{children}</AuthContext.Provider>;
 }

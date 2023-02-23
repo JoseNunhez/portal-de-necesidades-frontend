@@ -18,17 +18,19 @@ const ActualizarUserPage = () => {
     const [updatedUser, setUpdatedUser] = useState(false);
 
     const [email, setEmail] = useState();
-    const [nameUser, setNameUser] = useState();
+    const [name, setName] = useState();
+    const [nameUser, setNameUser ] = useState();
     const [biografia, setBiografia] = useState();
     const [password, setPassword] = useState();
     const [pass2, setPass2] = useState('');
-    
+        
     useEffect(() => {
         if (!user) return;
         setEmail(user.EMAIL);
-        setNameUser(user.NOMBRE);
+        setName(user.NOMBRE);
+        setNameUser(user.NOMBRE_USUARIO);
         setBiografia(user.BIOGRAFIA);
-        setPassword(user.CONTRASENHA)
+        setPassword(user.CONTRASENHA);
     }, [user])
 
     if (userLoading) return <p>Cargando...</p>
@@ -47,7 +49,7 @@ const ActualizarUserPage = () => {
 
         try {
             setUpdating(true);
-            const data = { email, nameUser, biografia, password }
+            const data = { email, name, nameUser,  biografia, password }
             await updateUserService({ token, data });
             setUpdatedUser(true);
             
@@ -77,8 +79,13 @@ const ActualizarUserPage = () => {
                 </fieldset>
                <fieldset>
                 <label htmlFor="nameUser">Nombre</label>
-                <input className="form-input" type="text" id="nameUser" name="nameUser" placeholder="Nombre" value={nameUser}
-                    onChange={(e) => setNameUser(e.target.value)} required/>
+                <input className="form-input" type="text" id="name" name="name" placeholder="Nombre" value={name}
+                    onChange={(e) => setName(e.target.value)} required/>
+               </fieldset>
+               <fieldset>
+                <label htmlFor="nameUser">Nombre de usuario</label>
+               <input className='form-input' type="text" id="nameUser" name="nameUser" placeholder='Ingrese su nombre de usuario' value={nameUser}
+                    onChange={(e) => setNameUser(e.target.value)} />
                </fieldset>
                 <fieldset>
                 <label htmlFor="biografia">Biografia</label>

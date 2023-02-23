@@ -21,6 +21,7 @@ const ActualizarUserPage = () => {
     const [nameUser, setNameUser] = useState();
     const [biografia, setBiografia] = useState();
     const [password, setPassword] = useState();
+    const [pass2, setPass2] = useState('');
     
     useEffect(() => {
         if (!user) return;
@@ -34,9 +35,15 @@ const ActualizarUserPage = () => {
     if (updating) return <p>Actualizando</p>
     if (updatedUser) return <p>Su usuario ha sido actualizado vuelva a Iniciar sesión <button onClick={logout}> Login </button></p>
     
+    
     const handleForm = async (e) => {
         e.preventDefault();
         setError('');
+
+        if (password !== pass2) {
+            setError('Las contraseñas no coinciden');
+            return;
+        }
 
         try {
             setUpdating(true);
@@ -82,6 +89,11 @@ const ActualizarUserPage = () => {
                     <label htmlFor="password">Contraseña</label>
                 <input className="form-input" type="password" id="password" name="password" placeholder="Nueva contraseña" value={password}
                     onChange={(e) => setPassword(e.target.value)}/>
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="password">Repita su contraseña</label>
+                <input className="form-input" type="password" id="pass2" name="pass2" placeholder="Repita su contraseña" 
+                    onChange={(e) => setPass2(e.target.value)}/>
                 </fieldset>
                 <button>Actualizar</button>
             </form>

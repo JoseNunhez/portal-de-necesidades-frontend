@@ -9,7 +9,7 @@ import "../styles/user.css"
 
 const ActualizarUserPage = () => {
     const { id } = useParams()
-    const { user, loading: userLoading, error: userError } = useUser(id)
+    const { user, loading: userLoading } = useUser(id)
     const { user: userLogged, logout } = useContext(AuthContext)
 
     const [error, setError] = useState('');

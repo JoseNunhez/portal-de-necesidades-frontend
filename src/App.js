@@ -4,6 +4,7 @@ import Footer from './components/footer';
 import Header from './components/header';
 import ActualizarUserPage from './pages/actualizaruserpage';
 import CreateServicePage from './pages/createservicepage';
+import EntregaTrabajo from './pages/entregatrabajo';
 import HomePage from './pages/homepage';
 import Login from './pages/loginpage';
 import NotFoundPage from './pages/notfoundpage';
@@ -26,6 +27,7 @@ function App() {
           <Route path="/service" element={<CreateServicePage />} />
           <Route path="/user/:id" element={<UserPage />} />
           <Route path="/actualizar/user/:id" element={<ActualizarUserPage />} />
+          <Route path="/service/:id/entrega" element={<EntregaTrabajo />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

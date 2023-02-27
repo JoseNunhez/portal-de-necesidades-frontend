@@ -23,6 +23,7 @@ const ActualizarUserPage = () => {
     const [biografia, setBiografia] = useState();
     const [password, setPassword] = useState();
     const [pass2, setPass2] = useState('');
+    const [imagen, setImagen] = useState(null);
         
     useEffect(() => {
         if (!user) return;
@@ -53,7 +54,8 @@ const ActualizarUserPage = () => {
 
         try {
             setUpdating(true);
-            const data = { email, name, nameUser,  biografia, password }
+            const data = new FormData(e.target);
+            //const data = { imagen, email, name, nameUser,  biografia, password }
             await updateUserService({ token, data });
             setUpdatedUser(true);
             
@@ -68,8 +70,27 @@ const ActualizarUserPage = () => {
     return (
         <section className="carta-usuario">
             <h3>User {user.NOMBRE_USUARIO}</h3>
-            {user.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${user.IMAGEN}`} alt="imagen usuario" width="100px" /> : null}
+            {user.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${user.IMAGEN}`} alt="imagen usuario" width="100px" /> : null}
             <form className="formulario" onSubmit={handleForm}>
+            <fieldset>
+          <label htmlFor="imagen">Foto de perfil</label>
+          <input
+            type="file"
+            name="imagen"
+            id="image"
+            accept={"imagen/*"}
+            onChange={(e) => setImagen(e.target.files[0])}
+          />
+          {imagen ? (
+            <figure>
+              <img
+                src={URL.createObjectURL(imagen)}
+                style={{ width: "100px" }}
+                alt="Preview"
+              />
+            </figure>
+          ) : null}
+        </fieldset>
                 <fieldset>
                     <label htmlFor="email">Email</label>
                     <input 

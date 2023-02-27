@@ -15,7 +15,7 @@ const UserPage = () => {
     return (
         <section className="carta-usuario">
             <h3>User {user.NOMBRE_USUARIO}</h3>
-            {user.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/${user.IMAGEN}`} alt="imagen usuario" width="100px" /> : null}
+            {user.IMAGEN ? <img src={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${user.IMAGEN}`} alt="imagen usuario" width="100px" /> : null}
             <p>Nombre: {user.NOMBRE}</p>
             <p>Email: {user.EMAIL}</p>
             <p>Biografia: {user.BIOGRAFIA} </p>

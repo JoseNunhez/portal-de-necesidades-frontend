@@ -159,12 +159,13 @@ export const deleteCommentService = async ({ id, token }) => {
 }
 
 export const updateUserService = async ( { token, data }) => {
+    data.delete("pass2")
     const response = await fetch((process.env.REACT_APP_API_URL_BD) + `/user`, {
         method: 'PUT',
-        body: JSON.stringify(data),
+        body: data,
         headers: {
             'Authorization': token,
-            'Content-Type': 'application/json',
+            //'Content-Type': 'application/json',
         },
     });
 

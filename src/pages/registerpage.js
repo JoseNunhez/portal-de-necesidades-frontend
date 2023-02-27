@@ -27,6 +27,8 @@ const Register = () => {
             navigate("/login");
         } catch (error) {
             setError(error.message);
+        } finally {
+            setCreating(false);
         }
     }
 

@@ -72,7 +72,7 @@ const Service = ({ service, removeService }) => {
             ) : null}
             <p>Estado: {service.STATUS}</p>
             <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
-            <p><Link to={`/service/${id}`}>Contratar servicio</Link></p>
+            <Link className="boton-contratar" to={`/service/${id}`}>Contratar servicio</Link>
             <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>

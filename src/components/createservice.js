@@ -8,6 +8,7 @@ const CreateService = () => {
     const [creating, setCreating] = useState(false);
     const { token } = useContext(AuthContext);
     const [serviceCreated, setServiceCreated] = useState(false);
+    const [listSubCategory, setListSubCategory ] = useState([]);
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -25,6 +26,29 @@ const CreateService = () => {
             setCreating(false);
         }
     }
+    const updateSubategoria = (idCategorias) => {
+        if (idCategorias === "1") {
+            setListSubCategory(
+                [{id: 1, name:"Marketing de redes sociales"}]
+            );
+        }else if(idCategorias === "2") {
+            setListSubCategory(
+                [{id: 2, name:"Contenido web"}]
+            );
+        } else if(idCategorias ===  "3") {
+            setListSubCategory(
+                [{id: 3, name:"Aplicaciones web"}]
+            );
+        } else if(idCategorias ===  "4") {
+            setListSubCategory(
+                [{id: 4, name:"Ventas"}]
+            );
+        } else if(idCategorias ===  "5") {
+            setListSubCategory(
+            [{id: 5, name:"Consultas legales"}]
+            );
+        }
+    }
 
     return !serviceCreated ? (
         <>
@@ -33,8 +57,26 @@ const CreateService = () => {
                     <input className="form-input" type="text" id="title" name="title" placeholder="Título" required />
                     <input className="form-input" type="text" id="description" name="description" placeholder="Desripción" required />
                     <input className="form-input" type="number" id="price" name="price" placeholder="Precio" required />
-                    <input className="form-input" type="text" id="categoriaId" name="categoriaId" placeholder="Categoría" required />
-                    <input className="form-input" type="text" id="subcategoriaId" name="subcategoriaId" placeholder="Subcategoría" required />
+
+                    <select name="categoriaId" onChange={(e) => updateSubategoria(e.target.value)} required> 
+                    <option value="" hidden>
+                        Selecciona una categoría
+                    </option>
+                    <option value="1">marketing digital</option>
+                    <option value="2">Redacción y Traducción</option>
+                    <option value="3">Programacion web</option>
+                    <option value="4">Servicio al cliente</option>
+                    <option value="5">Asesoria legal</option>
+                    </select >
+                    <select name="subcategoriaId" required>
+                        <option value="" hidden>
+                            Selecciona una subcategoría
+                        </option>
+                    {listSubCategory.map((subcategory) => {
+                        return <option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option>
+                    })}
+                    </select>
+
                     <input className="form-input" type="text" id="date" name="date" placeholder="Fecha límite de entrega(DD/MM/AAAA)" required />
                     <input className="form-input" type="file" id="file" name="file" placeholder="Archivo" required />
                 <button>Crear servicio</button>

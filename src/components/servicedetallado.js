@@ -25,12 +25,7 @@ const ServiceDetallado = ({ service }) => {
     return (
         <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
-            <p>Descripcion: {service.DESCRIPCION}</p>
-            <p>Categoría: {service.ID_CATEGORIAS}</p>
-            <p>Subcategoría: {service.ID_SUBCATEGORIAS}</p>
-            <p>Precio ofertado: {service.PRECIO}</p>
-            <p>Estado: {service.STATUS}</p>
-            <p>Fecha de publicación: {new Date(service.CREATED_AT).toLocaleString()}</p>
+            <p>Aquí va información en detalle del serivicio</p>
             <article>
                 <h4>Soluciones:</h4>
                 {service.SOLUCIONES.map((solucion) => (

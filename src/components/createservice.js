@@ -58,7 +58,7 @@ const CreateService = () => {
                     <input className="form-input" type="text" id="description" name="description" placeholder="Desripción" required />
                     <input className="form-input" type="number" id="price" name="price" placeholder="Precio" required />
 
-                    <select name="categoriaId" onChange={(e) => updateSubategoria(e.target.value)} required> 
+                    <select className="form-input" name="categoriaId" onChange={(e) => updateSubategoria(e.target.value)} required> 
                     <option value="" hidden>
                         Selecciona una categoría
                     </option>
@@ -68,7 +68,7 @@ const CreateService = () => {
                     <option value="4">Servicio al cliente</option>
                     <option value="5">Asesoria legal</option>
                     </select >
-                    <select name="subcategoriaId" required>
+                    <select className="form-input" name="subcategoriaId" required>
                         <option value="" hidden>
                             Selecciona una subcategoría
                         </option>

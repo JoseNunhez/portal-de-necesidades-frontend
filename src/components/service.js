@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useComments } from "../hooks/useComments";
 import { createCommentService, deleteService } from "../services";
+import servicioDoneService from "../services/servicioDone";
 import Comment from "./comment";
 import { NoComments } from "./nocomments";
 
@@ -43,6 +44,15 @@ const Service = ({ service, removeService }) => {
         }
     }
 
+    const servicioDone = async (id) => {
+        try {
+            await servicioDoneService({ id, token });
+            navigate("/");
+        } catch (error) {
+            setError(error.message);
+        }
+    }
+
     const deleteServiceService = async (id) => {
         try {
             await deleteService({ id, token });
@@ -78,6 +88,7 @@ const Service = ({ service, removeService }) => {
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
                     <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
+                    <button onClick={() => { if (window.confirm("Are you sure?")) servicioDone(id) }}> MARCAR COMO REALIZADO </button>
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}

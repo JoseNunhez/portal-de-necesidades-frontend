@@ -10,6 +10,7 @@ button,
   border: 1px solid #37393636;
   text-align: center;
   margin: 8px 12px;
+  margin-right: 10px;
   padding: 10px;
   display: inline-block;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -30,9 +31,16 @@ button,
   margin: 8px 12px;
   padding: 10px;
   display: inline-block;
+  margin-right: 10px;
+
+}
+
+#modo-noche, #modo-dia {
+  margin: 0%;
   
 }
 
+button 
 button:hover,
 .boton-contratar:hover {
   background: #bdbdbd75;

@@ -10,10 +10,10 @@ const Auth = () => {
     return user ? (
         <section className='auth-conectado'>
             <div>
-                {user.IMAGEN ? <p><img className='header-user-image' src={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${user.IMAGEN}`} alt="imagen usuario" width="30px"/></p> : null}
+                <p>Conectado como  <Link className='user-header' to={`/user/${user.ID}`}>{user.NOMBRE_USUARIO}</Link></p>
             </div>
             <div>
-                <p>Conectado como  <Link className='user-header' to={`/user/${user.ID}`}>{user.NOMBRE_USUARIO}</Link></p>
+                {user.IMAGEN ? <p><img className='header-user-image' src={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${user.IMAGEN}`} alt="imagen usuario" width="30px"/></p> : null}
             </div>
             <div>
                 <button onClick={logout}>Logout</button>

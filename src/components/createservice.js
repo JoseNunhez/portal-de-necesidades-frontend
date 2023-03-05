@@ -53,7 +53,7 @@ const CreateService = () => {
     return !serviceCreated ? (
         <>
             <form className="formulario" onSubmit={handleForm}>
-                <h3>Crea tu servicio</h3>
+                <h3>Crear nuevo servicio</h3>
                     <input className="form-input" type="text" id="title" name="title" placeholder="Título" required />
                     <input className="form-input" type="text" id="description" name="description" placeholder="Desripción" required />
                     <input className="form-input" type="number" id="price" name="price" placeholder="Precio" required />

@@ -6,14 +6,17 @@ import DarkLightTheme from "./darklight"
 const Header = () => {
     return (
         <>
+            <div className="header">
                 <h1>
-            <Link to="/">
-                 PORTAL DE NECESIDADES DIGITALES
-            </Link>
+                    <Link to="/">
+                        PORTAL DE NECESIDADES DIGITALES
+                    </Link>
                 </h1>
+                <DarkLightTheme />
+            </div>
+            
             <nav>
                 <Auth />
-                <DarkLightTheme />
             </nav>
 
         </>

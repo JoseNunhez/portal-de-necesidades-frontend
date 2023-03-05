@@ -5,6 +5,8 @@
 header {
   background-color:#354F52;
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .light header {
@@ -12,20 +14,24 @@ header {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;}
 
 #root > header h1{
-  margin-bottom: 1rem;
+  font-size: 2rem;
   color: rgb(255, 255, 255);
+}
+
+h1 a:hover{
+  color: #84A98C;
+  text-decoration: underline;
 }
 
 #root > header ul {
   display: flex;
   list-style: none;
-  gap : 1rem;
+  gap : 0.5rem;
 }
 
  header .user-header {
   color: #84A98C;
-  font-size: 25px;
-  font-weight: bolder;
+  font-size: 20px;
 }
 
 .light header .user-header {

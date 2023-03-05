@@ -22,7 +22,6 @@ const Service = ({ service, removeService }) => {
         try {
             const comentario = [await createCommentService({ id, token, texto: comment })];
 
-            console.log(comentario)
             const mappedComment = comentario.map((comment) => ({
                 id: comment.ID,
                 texto: comment.TEXTO,
@@ -33,14 +32,12 @@ const Service = ({ service, removeService }) => {
                 nombre: user.NOMBRE,
             }));
 
-            console.log(mappedComment)
             
             addComment(mappedComment[0]);
 
             e.target.reset();
         } catch (error) {
             setError(error.message);
-            console.log(error.message)
         }
     }
 
@@ -80,7 +77,7 @@ const Service = ({ service, removeService }) => {
                     <a download={service.FICHERO_DIGITAL} href={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${service.FICHERO_DIGITAL}`}  target="_blank" rel="noreferrer">Descargar</a>
                 </p>
             ) : null}
-            <p>Estado: {service.STATUS}</p>
+            <p className="p-estado">Estado: {service.STATUS}</p>
             <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
             <Link to={`/service/${id}`}>Ver en detalle</Link>
             <Link className="boton-contratar" to={`/service/${id}/entrega`}>Entregar trabajo realizado</Link>
@@ -88,7 +85,7 @@ const Service = ({ service, removeService }) => {
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
                     <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> Eliminar servicio </button>
-                    <button onClick={() => { if (window.confirm("Are you sure?")) servicioDone(id) }}> Marcar como realizado </button>
+                    {service.STATUS === "pendiente" ? <button onClick={() => { if (window.confirm("Are you sure?")) servicioDone(id) }}> Marcar como realizado </button> : null}
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}

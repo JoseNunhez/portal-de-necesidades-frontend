@@ -12,7 +12,6 @@ const useServices = ({sort}) => {
                 setLoading(true);
                 
                 const data = await loadAllServicesService();
-                console.log("hace fetch")
                 
                 setServices(data);
 

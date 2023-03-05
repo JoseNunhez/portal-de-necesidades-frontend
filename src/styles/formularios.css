@@ -1,6 +1,7 @@
 .formulario {
   display: flex;
   flex-direction: column;
+  max-width: 700px;
   gap: 0.75rem;
     background: #354F52;
     padding: 30px;

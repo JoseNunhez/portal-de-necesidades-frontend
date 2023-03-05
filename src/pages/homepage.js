@@ -22,11 +22,13 @@ const HomePage = () => {
 
     return (
         <section>
+            <section className="contenedor-filtros">
                 <section className="homepage-head">
                     <h2>Servicios requeridos</h2>
                     {(user ? <Link to="/service"><button>Crear un nuevo servicio</button></Link> : null)}
+                </section>
+                <Filtros sort={sort} setSort={setSort} />
             </section>
-            <Filtros sort={sort} setSort={setSort} />
                 
             <section className="servicelist">
                 <ServicesList services={services} removeService = {removeService} />

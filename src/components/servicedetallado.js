@@ -25,28 +25,32 @@ const ServiceDetallado = ({ service }) => {
     return (
         <article className="servicio-individual">
             <h3>{service.TITULO}</h3>
-            <p>Aquí va información en detalle del serivicio</p>
+            <p>Descripcion: {service.DESCRIPCION}</p>
+            <p>Categoría: {service.CATEGORIAS}</p>
+            <p>Subcategoría: {service.SUBCATEGORIAS}</p>
+            <p>Precio ofertado: {service.PRECIO}</p>
+            {service.FICHERO_DIGITAL ? (
+                <p>Archivo adjunto:
+                    <a href={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${service.FICHERO_DIGITAL}`} target="_blank" rel="noreferrer">Ver contenido </a>
+                    <a download={service.FICHERO_DIGITAL} href={`${process.env.REACT_APP_API_URL_BD}/uploads/files/${service.FICHERO_DIGITAL}`}  target="_blank" rel="noreferrer">Descargar</a>
+                </p>
+            ) : null}
+            <p className="p-estado">Estado: {service.STATUS}</p>
+            <p>Fecha de publicación: {new Date (service.CREATED_AT).toLocaleString()}</p>
             <article>
                 <h4>Soluciones:</h4>
+                <Link className="boton-contratar" to={`/service/${id}/entrega`}>Entregar trabajo realizado</Link>
                 {service.SOLUCIONES.map((solucion) => (
                     <Solucion solucion={solucion} />
                 ))}
             </article>
+            {user && user.ID === service.ID_USUARIOS ? (
+                <section>
+                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
+                    {error ? (<p>{error}</p>) : null}
+                </section>
+            ) : null}
             <p><Link to={`/`}>Volver atrás</Link></p>
-            {user && user.ID === service.ID_USUARIOS ? (
-                <section>
-                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
-                    {error ? (<p>{error}</p>) : null}
-                </section>
-            ) : null}
-            <p><Link to={`/service/${id}`}>Contratar servicio </Link></p>
-            <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
-            {user && user.ID === service.ID_USUARIOS ? (
-                <section>
-                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
-                    {error ? (<p>{error}</p>) : null}
-                </section>
-            ) : null}
             <h4>Comentarios:</h4>
             <form className="comment-form">
             <input className="service-input" type="text" placeholder="Escribe un comentario" />

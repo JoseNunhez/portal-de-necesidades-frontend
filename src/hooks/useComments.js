@@ -23,12 +23,10 @@ export function useComments({id, token}) {
     }, [id, token]);
 
     const addComment = (data) => {
-        console.log("data", data)
         setComments([data, ...comments]);
     }
 
     const removeComment = (id) => {
-        console.log("id", id)
         setComments(comments.filter((comment) => comment.id !== id));
     };
 

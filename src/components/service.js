@@ -87,8 +87,8 @@ const Service = ({ service, removeService }) => {
             <p>Publicado por: <a href={`/user/${service.ID_USUARIOS}`}>{service.NOMBRE_USUARIO}</a></p>
             {user && user.ID === service.ID_USUARIOS ? (
                 <section>
-                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> ELIMINAR SERVICIO </button>
-                    <button onClick={() => { if (window.confirm("Are you sure?")) servicioDone(id) }}> MARCAR COMO REALIZADO </button>
+                    <button onClick={() => {if (window.confirm("Are you sure?")) deleteServiceService(id)}}> Eliminar servicio </button>
+                    <button onClick={() => { if (window.confirm("Are you sure?")) servicioDone(id) }}> Marcar como realizado </button>
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}

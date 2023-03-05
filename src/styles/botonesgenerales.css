@@ -1,19 +1,41 @@
 button,
 #root .boton-contratar {
+  width: auto;
   background: #84A98C;
-  padding: 10px;
   border: none;
   color:black;
   border-radius: 5px;
-  font-size: 18px;
-  font-family: 'calibri';
-  border: 1px solid #373936;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 1px solid #37393636;
   text-align: center;
+  margin: 8px 12px;
+  padding: 10px;
+  display: inline-block;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.light button,
+#root .boton-contratar {
+  width: auto;
+  background: #007aff;;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 1px solid #37393605;
+  text-align: center;
+  line-height: 1.35;
+  margin: 8px 12px;
+  padding: 10px;
+  display: inline-block;
+  
 }
 
 button:hover,
 .boton-contratar:hover {
-  background: #2F3E46;
+  background: #bdbdbd75;
   cursor: pointer;
   color: white;
 }

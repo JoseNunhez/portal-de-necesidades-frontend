@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import Auth from "./auth"
 import "../styles/botonesgenerales.css"
+import DarkLightTheme from "./darklight"
 
 const Header = () => {
     return (
@@ -12,7 +13,9 @@ const Header = () => {
                 </h1>
             <nav>
                 <Auth />
+                <DarkLightTheme />
             </nav>
+
         </>
     )
 }

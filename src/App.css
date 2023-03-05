@@ -4,22 +4,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Montserrat';
 }
 
 a:link, a:visited, a:active, a{
-  color: rgb(28, 87, 175);
+  color: rgb(153, 153, 153);
   text-decoration:none;
+  text-align: center;
+}
+
+a:visited{
+  text-align: center;
 }
 
 h1 a,
 h1 a:visited {
   color: white;
   font-family: 'Montserrat';
+  font-weight: bolder;
 }
 
 h1 a:hover{
   color : white;
-  text-decoration: underline;
 }
 
 #root{
@@ -27,6 +33,13 @@ h1 a:hover{
   flex-direction: column;
   min-height: 100vh;
   background-color:#52796F;
+}
+
+.light #root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color:#e0dfdf;
 }
 main{
   flex: 1;
@@ -39,24 +52,30 @@ h3{
 
 section > h2 {
   margin-bottom: 1rem;
+  font-size: 25px;
 }
 
 h2 {
   padding: 0.5rem 1rem;
   border-radius: 15px;
-  background-color: rgb(136, 159, 151);
   text-align: center;
   color : white;
-  border : 1px solid #52796F;
-  box-shadow: 0 0 5px rgb(0, 0, 0);
+  font-weight: 15px;
 }
+
+.light h2 {
+  text-align: center;
+  color : #2c2c2c;
+}
+
 
 .auth-conectado {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
   justify-content: right;
 }
+
 
 .header-user-image {
   width: 40px;
@@ -70,4 +89,22 @@ h2 {
   align-items: center;
   justify-content: center;
   background-color: #52796F;
+}
+
+
+.light .homepage-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f3f3d7;
+  border-color: rgb(218, 218, 218);
+  box-shadow: #c7c7c7;
+}
+
+.button-ajustes {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
 }

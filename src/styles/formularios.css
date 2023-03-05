@@ -2,13 +2,26 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-    width: 400px;
     background: #354F52;
     padding: 30px;
     margin: auto;
     margin-top: 50px;
     border-radius: 5px;
     font-family: 'calibri';
+  }
+
+.light .formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+    background: #dfdfdf23;
+    padding: 30px;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
   }
   
   .formulario h3 {
@@ -28,6 +41,20 @@
     border-radius: 4px;
     font-size: 18px;
     font-family: 'calibri';
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+
+  .light  .form-input {
+    width: 100%;
+    background: #ffffffaf;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #37393600;
+    color: rgb(0, 0, 0);
+    border-radius: 4px;
+    font-size: 18px;
+    font-family: 'calibri';
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   }
   
   .formulario p {
@@ -48,17 +75,29 @@
   }
   
   .formulario button {
-    width: 100%;
     background: #84A98C;
     padding: 10px;
     border: none;
     color: white;
     border-radius: 4px;
     font-size: 18px;
-    font-family: 'calibri';
+  }
+
+  .light .formulario button {
+    background: #1865ff;
+    padding: 7px;
+    border: none;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: bolder;
   }
 
   .formulario button:hover {
     background: #2F3E46;
     cursor: pointer;
+  }
+
+  fieldset {
+    border: none;
   }

@@ -1,11 +1,15 @@
 #root > header {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 header {
   background-color:#354F52;
   color: white;
 }
+
+.light header {
+  background-color: #e7d401;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;}
 
 #root > header h1{
   margin-bottom: 1rem;
@@ -20,4 +24,11 @@ header {
 
  header .user-header {
   color: #84A98C;
+  font-size: 20px;
+}
+
+.light header .user-header {
+  color: #001686;
+  font-size: 20px;
+  font-weight: bolder;
 }

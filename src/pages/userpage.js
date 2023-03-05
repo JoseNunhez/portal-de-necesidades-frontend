@@ -20,7 +20,7 @@ const UserPage = () => {
             <p>Email: {user.EMAIL}</p>
             <p>Biografia: {user.BIOGRAFIA} </p>
             <p>Activo desde: {new Date(user.CREATED_AT).toLocaleDateString()}</p>
-            {userLogged && userLogged.ID === user.ID ? <Link to={`/actualizar/user/${id}`}>Actualiza tu perfil</Link> : null}
+            {userLogged && userLogged.ID === user.ID ? <Link to={`/actualizar/user/${id}`}>Actualizar perfil</Link> : null}
         </section>
     )
 }

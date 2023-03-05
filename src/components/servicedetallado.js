@@ -50,7 +50,7 @@ const ServiceDetallado = ({ service }) => {
                     {error ? (<p>{error}</p>) : null}
                 </section>
             ) : null}
-            <p><Link to={`/`}>Volver atrás</Link></p>
+            <Link to={`/`}>Volver atrás</Link>
             <h4>Comentarios:</h4>
             <form className="comment-form">
             <input className="service-input" type="text" placeholder="Escribe un comentario" />

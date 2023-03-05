@@ -16,7 +16,7 @@ button,
 }
 
 .light button,
-#root .boton-contratar {
+.light #root .boton-contratar {
   width: auto;
   background: #007aff;;
   border: none;

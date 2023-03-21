@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { AuthContext } from "../context/AuthContext"
 import { updateUserService } from '../services';
 
@@ -39,7 +39,12 @@ const ActualizarUserPage = () => {
     if (updatedUser) {
         setToken('');
         setUser(null);
-        return <p>Su usuario ha sido actualizado vuelva a Iniciar sesión</p>
+        return (
+        <section className="iniciar-sesion-actualizacion">
+            <p >Su usuario ha sido actualizado vuelva a iniciar sesion</p>
+            <Link to="/login" >Iniciar sesion</Link>
+        </section>
+        )
     }
     
     
